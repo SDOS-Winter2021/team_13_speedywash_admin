@@ -1,11 +1,12 @@
 import React from 'react'
+import Header from "../Header/Header"
+
 
 function Homepage({ user, setUser }) {
+
     return (
         <div>
-            <h1>
-                {`Hi, ${user.name}`}
-            </h1>
+            <Header user={user} setUser={setUser}/>
         </div>
     )
 }
