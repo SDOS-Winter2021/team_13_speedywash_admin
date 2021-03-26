@@ -117,7 +117,7 @@ function Header({ user, setUser, currentView, setCurrentView }) {
                         Speedywash-Admin (IN)
                     </Typography>
                     <Typography>
-                        {`Hi, ${user.name}`}
+                        {`Hi, ${user.Name}`}
                     </Typography>
                 </Toolbar>
             </AppBar>
