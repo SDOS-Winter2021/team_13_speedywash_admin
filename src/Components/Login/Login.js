@@ -78,7 +78,7 @@ function Login({ setUser }) {
     }
 
     return (
-        <div class="login">
+        <div style={{marginTop: "20%"}} class="login">
             <Button variant="contained" color="primary" onClick={initiateGoogleSignIn} >Sign in with Google</Button>
             <Snackbar open={snackObject.open} autoHideDuration={3000}
                 onClose={handleSnackBarClosing}>
