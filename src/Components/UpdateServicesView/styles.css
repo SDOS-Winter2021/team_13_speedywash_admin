@@ -1,0 +1,90 @@
+.title {
+    text-align: center;
+    margin: 10px;
+}
+.addButton{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    flex: 0.40;
+    vertical-align: bottom;
+    background-color: #3f51b5;
+    padding: 5px 5px;
+    border: none;
+    border-radius: 5px 5px;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+.confirmButton{
+    margin: 20px;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+.discardButton{
+    margin: 20px;
+    background-color: red;
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+.service{
+    margin: 10px;
+    border-radius: 5px 5px;
+}
+.graybackground {
+    background-color: #CFCCCC;
+}
+.addField{
+    padding: 10px;
+    padding-top: 0px;
+    display: flex;
+}
+.addFieldTitle {
+    display: inline;
+    width: fit-content;
+}
+.addServiceButton {
+    height: fit-content;
+    width: fit-content;
+}
+.textField {
+    display: inline;
+    margin: 5px;
+    flex: 0.60;
+}
+.subViewTitle {
+    text-align: center;
+}
+.serviceView {
+    width: 24%;
+    height: auto;
+    margin: 5px;
+    margin-right: 5px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: gray;
+    display: inline-block;
+    vertical-align: text-top;
+}
+.itemView {
+    width: 45%;     
+    height: auto;
+    margin: 5px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: gray;
+    display: inline-block;
+    vertical-align: text-top;
+}
