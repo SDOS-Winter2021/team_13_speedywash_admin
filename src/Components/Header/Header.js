@@ -19,7 +19,6 @@ import StoreIcon from '@material-ui/icons/Store';
 import HomeView from '../HomeView/HomeView';
 import UsersView from '../UsersView/UsersView';
 import UpdateServicesView from '../UpdateServicesView/UpdateServicesView';
-import UpdateItemsView from '../UpdateItemsView/UpdateItemsView';
 import CreateNewAdminView from '../CreateNewAdminView/CreateNewAdminView';
 import UpdateSubscriptionView from '../UpdateSubscriptionView/UpdateSubscriptionView';
 import UpdateAdvertisementView from '../UpdateAdvertisementView/UpdateAdvertisementView';
@@ -65,11 +64,6 @@ function CreateDrawerItems(user, setUser) {
             text: "Update Services",
             icon: <UpdateIcon />,
             component: <UpdateServicesView user={user} setUser={setUser} />
-        },
-        {
-            text: "Update Items",
-            icon: <UpdateIcon />,
-            component: <UpdateItemsView user={user} setUser={setUser} />
         },
         {
             text: "Create Admin Account",

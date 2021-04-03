@@ -2,14 +2,16 @@ const KEYS = {
     DATABASE: {
         COLLECTIONS: {
             ADMINS: "Admins",
-
+            TEST: "Test",
+            SERVICES: "homepage"
         },
         ATTRIBUTES: {
             NAME: "name",
         }
     },
     LOCAL_STORAGE: {
-        USER: "@speedywash:user"
+        USER: "@speedywash:user",
+        SERVICES: {}
     },
     COLORS: {
         HIGHLIGHT: "#2196F3",
