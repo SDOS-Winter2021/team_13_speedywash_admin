@@ -9,6 +9,8 @@ import Delete from '@material-ui/icons/Delete';
 import KEYS from '../../configs/KEYS';
 import CategoryElement from "./CategoryElement"
 
+/* This View renders the overall layout of the categories */
+
 function CategoryView(props){
     const [newCategory, setNewCategory] = useState("");
     const selectedService=props.selectedService;
@@ -18,11 +20,12 @@ function CategoryView(props){
         <div class="subViewTitle">
             <h3>Categories</h3>
         </div>
+        {/* Below is the head bar to add a new category if there is a service selected */}
         <div class="addField">
             <div class="textField">
                 <TextField value={newCategory} onChange={(event)=>{setNewCategory(event.target.value)}} label="Category Name"></TextField>
             </div>
-            <Button onClick={()=>{
+            <Button onClick={()=>{ // newcategory should not be empty or already existing
                 if(selectedService!=="" && newCategory!=="" && !props.services[selectedService].hasOwnProperty([newCategory]))
                 {
                     props.setServices({...props.services, [selectedService] : {...props.services[selectedService], [newCategory] : {} }})
@@ -32,6 +35,7 @@ function CategoryView(props){
             class="addButton">Add Category</Button>
         </div>
         {
+        /* Renders individual categories if there is a service selected  */
             selectedService!=="" &&
                 Object.keys(props.services[selectedService]).map((name)=>{
                     return <CategoryElement

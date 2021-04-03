@@ -12,13 +12,18 @@ import KEYS from '../../configs/KEYS';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 
-function UpdateServicesView() {
+/* This View shows Services Details to Admin
+*/
 
+function UpdateServicesView() {
+    /* some states to keep track of what is to be shown */
     const [services, setServices] = useState({
     });
     const [selectedService, setselectedService] = useState("");
     const [selectedCategory, setselectedCategory] = useState("");
     const [selectedItem, setselectedItem] = useState("");
+    
+    // fetch data from firebase whenever required
     useEffect(()=>
     {
         firebase.firestore()
@@ -31,7 +36,7 @@ function UpdateServicesView() {
             }
         });
     },[])
-
+    // In case admin doesn't want to save changes to database, it will be fetched again from firebase
     function discardChanges(){
         setselectedItem("");
         setselectedCategory("");
@@ -46,18 +51,18 @@ function UpdateServicesView() {
             }
         });
     }
-
+    // in case admin confirm changes, it will be modified in the firebase as well
     function confirmChanges(){
         firebase.firestore()
         .collection(KEYS.DATABASE.COLLECTIONS.TEST)
         .doc("Table1")
         .set(services)
     }
-
-    console.log(services);
-    console.log(services[selectedService]);
+    // uncommment to debug
+    // console.log(services);
+    // console.log(services[selectedService]);
     return (
-        <div>
+        <div> 
             <h1 class={"title"}>Services</h1>
             <div style={{textAlign: "center"}}>
                 <Button class="confirmButton" onClick={confirmChanges}>Upload Changes</Button>

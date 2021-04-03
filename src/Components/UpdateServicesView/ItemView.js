@@ -9,6 +9,8 @@ import Delete from '@material-ui/icons/Delete';
 import KEYS from '../../configs/KEYS';
 import ItemElement from './ItemElement'
 
+/* Renders general layout for Individual Items */
+
 function ItemView(props){
     const emptyItem={itemName:"", price: "", unit: ""}
     const [newItem, setNewItem] = useState({
@@ -35,7 +37,7 @@ function ItemView(props){
             </div>
             <Button onClick={()=>{
                 if(selectedService!=="" && selectedCategory!==""&& newItem.name!=="" && newItem.price!=="" && newItem.unit!=="")
-                {
+                {   // add a new item while keeping all the previous things intact
                     props.setServices(
                         {...props.services,
                             [selectedService] : 

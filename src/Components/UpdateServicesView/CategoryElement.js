@@ -8,6 +8,8 @@ import { Button } from '@material-ui/core';
 import Delete from '@material-ui/icons/Delete';
 import KEYS from '../../configs/KEYS';
 
+/* Renders Individual Category and stores its state - whether it is in edit mode of not */
+
 function CategoryElement(props){
     const [edit, setEdit] = useState("");
     const [newName, setNewName] = useState("");

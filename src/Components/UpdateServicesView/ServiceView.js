@@ -8,6 +8,9 @@ import { Button } from '@material-ui/core';
 import Delete from '@material-ui/icons/Delete';
 import KEYS from '../../configs/KEYS';
 import ServiceElement from './ServiceElement'
+
+/* Renders General Layout for Service's View */
+
 function ServiceView(props){
     const [newService, setNewService] = useState("");
     return (
