@@ -23,6 +23,7 @@ function CategoryElement(props){
                     </Button>
                     <Button onClick={()=>{
                         console.log("delete clicked")
+                        setEdit(false)
                         if(selectedCategory===name)
                         {    
                             props.setselectedItem("")
@@ -40,7 +41,7 @@ function CategoryElement(props){
                                 <TextField value={newName} onChange={(event)=>{setNewName(event.target.value)}} label="Enter New Name"></TextField>
                             </div>
                             <Button class="saveButton" onClick={()=>{
-                                if(newName!="")
+                                if(newName!="" && newName!=name)
                                 {
                                     setEdit(false);
                                     if(selectedCategory===name)

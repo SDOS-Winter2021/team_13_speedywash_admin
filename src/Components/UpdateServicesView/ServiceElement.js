@@ -21,6 +21,7 @@ function ServiceElement(props){
                     </Button>
                     <Button onClick={()=>{
                         console.log("delete clicked")
+                        setEdit(false)
                         if(props.selectedService===name)
                         {    
                                 props.setselectedItem("")
@@ -32,14 +33,14 @@ function ServiceElement(props){
                         props.setServices(temp)
                         }} style={{flex: 0.2}}><Delete></Delete>
                     </Button>
-                    </div>
+                </div>
                     {   edit==true &&
-                        <div>
+                        <div class="flexRow">
                             <div class="textField">
                                 <TextField value={newName} onChange={(event)=>{setNewName(event.target.value)}} label="Enter New Name"></TextField>
                             </div>
                             <Button class="saveButton" onClick={()=>{
-                                if(newName!="")
+                                if(newName!="" && newName!=name)
                                 {
                                     setEdit(false);
                                     if(props.selectedService===name)
