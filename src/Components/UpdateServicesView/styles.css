@@ -17,6 +17,26 @@
     display: inline-block;
     font-size: 16px;
 }
+.saveButton{
+    margin: 5px;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+}
+.cancelButton{
+    margin: 5px;
+    background-color: red;
+    border: none;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+}
 .confirmButton{
     margin: 20px;
     background-color: #4CAF50;

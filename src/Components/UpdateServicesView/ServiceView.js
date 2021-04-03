@@ -7,7 +7,7 @@ import firebase from "firebase";
 import { Button } from '@material-ui/core';
 import Delete from '@material-ui/icons/Delete';
 import KEYS from '../../configs/KEYS';
-
+import ServiceElement from './ServiceElement'
 function ServiceView(props){
     const [newService, setNewService] = useState("");
     return (
@@ -30,21 +30,15 @@ function ServiceView(props){
         </div>
         {
             Object.keys(props.services).map((name)=>{
-                return (<div key={name} class="service" style={{display: "flex" , flexDirection: "row", backgroundColor : props.selectedService===name.toString() ? "#CFCCCC" : null}}>
-                    <Button style={{flex: 1}} onClick={()=>{props.setselectedItem(""); props.setselectedCategory(""); props.setselectedService(name); }}>{name}</Button>
-                    <Button onClick={()=>{
-                        console.log("delete clicked")
-                        if(props.selectedService===name)
-                        {    
-                            props.setselectedItem("")
-                            props.setselectedCategory("")
-                            props.setselectedService("")
-                        }
-                        let temp={...props.services}
-                        delete temp[name]
-                        props.setServices(temp)
-                        }} style={{flex: 0.2}}><Delete></Delete></Button>
-                </div>)
+                return <ServiceElement
+                services={props.services} 
+                setServices={props.setServices} 
+                selectedService={props.selectedService}
+                setselectedService={props.setselectedService}
+                setselectedCategory={props.setselectedCategory}
+                setselectedItem={props.setselectedItem}
+                name={name}>
+                </ServiceElement>
             })
         }
     </div>

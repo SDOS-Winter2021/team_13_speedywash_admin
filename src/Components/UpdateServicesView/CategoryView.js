@@ -7,6 +7,7 @@ import firebase from "firebase";
 import { Button } from '@material-ui/core';
 import Delete from '@material-ui/icons/Delete';
 import KEYS from '../../configs/KEYS';
+import CategoryElement from "./CategoryElement"
 
 function CategoryView(props){
     const [newCategory, setNewCategory] = useState("");
@@ -33,20 +34,15 @@ function CategoryView(props){
         {
             selectedService!=="" &&
                 Object.keys(props.services[selectedService]).map((name)=>{
-                    return (<div key={name} class="service" style={{display: "flex" , flexDirection: "row", backgroundColor : selectedCategory===name.toString() ? "#CFCCCC" : null}}>
-                        <Button style={{flex: 1}} onClick={()=>{props.setselectedItem(""); props.setselectedCategory(name); }}>{name}</Button>
-                        <Button onClick={()=>{
-                            console.log("delete clicked") 
-                            if(selectedCategory===name)
-                            {    
-                                props.setselectedItem("")
-                                props.setselectedCategory("")
-                            }
-                            let temp={...props.services}
-                            delete temp[selectedService][name]
-                            props.setServices(temp)
-                            }} style={{flex: 0.2}}><Delete></Delete></Button>
-                    </div>)
+                    return <CategoryElement
+                    services={props.services} 
+                    setServices={props.setServices} 
+                    selectedService={props.selectedService}
+                    selectedCategory={props.selectedCategory}
+                    setselectedCategory={props.setselectedCategory}
+                    setselectedItem={props.setselectedItem}
+                    name={name}
+                    ></CategoryElement>
                 })
         }
     </div>

@@ -29,10 +29,6 @@ function UpdateServicesView() {
                 setValue(KEYS.LOCAL_STORAGE.SERVICES, record.data(), KEYS.TIME.WEEK);
                 setServices(record.data());
             }
-            else
-            {
-
-            }
         });
     },[])
 
@@ -63,6 +59,10 @@ function UpdateServicesView() {
     return (
         <div>
             <h1 class={"title"}>Services</h1>
+            <div style={{textAlign: "center"}}>
+                <Button class="confirmButton" onClick={confirmChanges}>Upload Changes</Button>
+                <Button class="discardButton" onClick={discardChanges}>Discard Changes</Button>
+            </div>
             <ServiceView 
             services={services} 
             setServices={setServices} 
@@ -87,10 +87,6 @@ function UpdateServicesView() {
             selectedItem={selectedItem}
             setselectedItem={setselectedItem}>
             </ItemView>
-            <div style={{textAlign: "center"}}>
-                <Button class="confirmButton" onClick={confirmChanges}>Upload Changes</Button>
-                <Button class="discardButton" onClick={discardChanges}>Discard Changes</Button>
-            </div>
         </div>
     )
 }
