@@ -34,8 +34,12 @@ function ServiceView(props){
                     <Button style={{flex: 1}} onClick={()=>{props.setselectedItem(""); props.setselectedCategory(""); props.setselectedService(name); }}>{name}</Button>
                     <Button onClick={()=>{
                         console.log("delete clicked")
-                        props.setselectedItem("")
-                        props.setselectedCategory("")
+                        if(props.selectedService===name)
+                        {    
+                            props.setselectedItem("")
+                            props.setselectedCategory("")
+                            props.setselectedService("")
+                        }
                         let temp={...props.services}
                         delete temp[name]
                         props.setServices(temp)

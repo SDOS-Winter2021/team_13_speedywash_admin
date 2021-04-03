@@ -64,7 +64,9 @@ function ItemView(props){
                             <div style={{flex: 0.5}}>{item.price}/{item.unit}</div>
                         </Button>
                         <Button onClick={()=>{
-                            console.log("delete clicked") 
+                            console.log("delete clicked")
+                            if(selectedItem===name)
+                                props.setselectedItem("")
                             let temp={...props.services}
                             delete temp[selectedService][selectedCategory][name]
                             props.setServices(temp)

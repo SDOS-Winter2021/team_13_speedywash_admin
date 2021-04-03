@@ -37,7 +37,11 @@ function CategoryView(props){
                         <Button style={{flex: 1}} onClick={()=>{props.setselectedItem(""); props.setselectedCategory(name); }}>{name}</Button>
                         <Button onClick={()=>{
                             console.log("delete clicked") 
-                            props.setselectedItem("")
+                            if(selectedCategory===name)
+                            {    
+                                props.setselectedItem("")
+                                props.setselectedCategory("")
+                            }
                             let temp={...props.services}
                             delete temp[selectedService][name]
                             props.setServices(temp)
