@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react';
+import "./styles.css"
 import Header from "../Header/Header"
 import HomeView from '../HomeView/HomeView'
 import HomeIcon from '@material-ui/icons/Home';
-
 
 function Homepage({ user, setUser }) {
     // Default First Screen on LoginclassName={classes.appbar}
@@ -15,6 +15,7 @@ function Homepage({ user, setUser }) {
     return (
         <div>
             {/* Render Header */}
+
             <Header user={user} setUser={setUser} currentView={currentView} setCurrentView={setCurrentView} />
             {/* Render the current selected View */}
             {currentView.component}
