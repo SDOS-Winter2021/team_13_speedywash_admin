@@ -26,7 +26,7 @@ import SignOut from '../SignOut/SignOut';
 
 /*
     Styles for material ui components
-*/ 
+*/
 const useStyles = makeStyles((theme) => ({
     appbar: {
         top: 0
@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     drawer window
 */
 function CreateDrawerItems(user, setUser) {
-    return [
+    return user.Roll == "Admin" ? [
         {
             text: "Home",
             icon: <HomeIcon />,
@@ -84,7 +84,23 @@ function CreateDrawerItems(user, setUser) {
             icon: <ExitToAppIcon />,
             component: <SignOut user={user} setUser={setUser} />
         }
-    ]
+    ] : [
+            {
+                text: "Home",
+                icon: <HomeIcon />,
+                component: <HomeView user={user} setUser={setUser} />
+            },
+            {
+                text: "Update Orders",
+                icon: <StoreIcon />,
+                component: <UpdateOrdersView user={user} setUser={setUser} />
+            },
+            {
+                text: "Sign out",
+                icon: <ExitToAppIcon />,
+                component: <SignOut user={user} setUser={setUser} />
+            }
+        ]
 }
 
 // Main Header Component
