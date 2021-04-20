@@ -3,14 +3,12 @@ import "./styles.css"
 import ServiceView from "./ServiceView"
 import CategoryView from "./CategoryView"
 import ItemView from "./ItemView"
-import initial from "./extra"
 import { setValue } from "../../configs/CacheManager";
-import TextField from '@material-ui/core/TextField';
 import firebase from "firebase";
 import { Button } from '@material-ui/core';
 import KEYS from '../../configs/KEYS';
-import Snackbar from '@material-ui/core/Snackbar';
-import Alert from '@material-ui/lab/Alert';
+
+
 
 /* This View shows Services Details to Admin
 */

@@ -3,7 +3,8 @@ const KEYS = {
         COLLECTIONS: {
             ADMINS: "Admins",
             TEST: "Test",
-            SERVICES: "homepage"
+            SERVICES: "homepage",
+            ORDERS: "incompleteOrders"
         },
         ATTRIBUTES: {
             NAME: "name",
@@ -11,7 +12,8 @@ const KEYS = {
     },
     LOCAL_STORAGE: {
         USER: "@speedywash:user",
-        SERVICES: {}
+        SERVICES: {},
+        ORDERS: {}
     },
     COLORS: {
         HIGHLIGHT: "#2196F3",

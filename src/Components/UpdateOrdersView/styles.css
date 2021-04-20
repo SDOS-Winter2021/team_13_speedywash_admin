@@ -1,0 +1,80 @@
+.title {
+    text-align: center;
+    margin: 10px;
+}
+.ordersView {
+    width: 30%;
+    height: auto;
+    margin: 5px;
+    margin-right: 2%;
+    margin-left: 5%;
+    margin-top: 2%;
+    border-style: solid;
+    border-width: 1px;
+    border-color: gray;
+    display: inline-block;
+    vertical-align: text-top;
+}
+.ordersDetails{
+    width: 56%;
+    height: auto;
+    margin: 5px;
+    margin-right: 5%;
+    margin-left: 2%;
+    margin-top: 2%;
+    border-style: solid;
+    border-width: 1px;
+    border-color: gray;
+    display: inline-block;
+    vertical-align: text-top;
+}
+.orderButtonView{
+    margin: 10px;
+    border-radius: 5px 5px;
+    flex : 1;
+    text-align: center;
+    
+}
+.orderData{
+    display:inline;
+}
+.textFieldView{
+    padding: 2%;
+    justify-content: center;
+    
+}
+.textField {
+    display: flex;
+    margin: 2%;
+    padding: 4%;
+    margin-left: 5%;
+    
+}
+.subViewTitle {
+    margin-top: 5px;
+    text-align: center;
+}
+.statusView {
+    width: 90%;
+    height: auto;
+    margin: 5px;
+    margin-right: 5%;
+    margin-left: 5%;
+    border-style: solid;
+    border-color: gray;
+    vertical-align: text-top;
+    text-align: center;
+
+
+}
+.status{
+    margin: 10px;
+    border-radius: 5px 5px;
+    flex : 1
+}
+.container{
+    flex: 1;
+    display: flex;
+    flex-Direction: 'row';
+    
+}
