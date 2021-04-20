@@ -20,14 +20,13 @@ import HomeView from '../HomeView/HomeView';
 import UsersView from '../UsersView/UsersView';
 import UpdateServicesView from '../UpdateServicesView/UpdateServicesView';
 import CreateNewAdminView from '../CreateNewAdminView/CreateNewAdminView';
-import UpdateSubscriptionView from '../UpdateSubscriptionView/UpdateSubscriptionView';
 import UpdateAdvertisementView from '../UpdateAdvertisementView/UpdateAdvertisementView';
 import UpdateOrdersView from '../UpdateOrdersView/UpdateOrdersView';
 import SignOut from '../SignOut/SignOut';
 
 /*
     Styles for material ui components
-*/ 
+*/
 const useStyles = makeStyles((theme) => ({
     appbar: {
         top: 0
@@ -49,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     drawer window
 */
 function CreateDrawerItems(user, setUser) {
-    return [
+    return user.Roll == "Admin" ? [
         {
             text: "Home",
             icon: <HomeIcon />,
@@ -71,11 +70,6 @@ function CreateDrawerItems(user, setUser) {
             component: <CreateNewAdminView user={user} setUser={setUser} />
         },
         {
-            text: "Update Subscriptions",
-            icon: <SubscriptionsIcon />,
-            component: <UpdateSubscriptionView user={user} setUser={setUser} />
-        },
-        {
             text: "Change Advertisement",
             icon: <AddPhotoAlternateIcon />,
             component: <UpdateAdvertisementView user={user} setUser={setUser} />
@@ -90,7 +84,23 @@ function CreateDrawerItems(user, setUser) {
             icon: <ExitToAppIcon />,
             component: <SignOut user={user} setUser={setUser} />
         }
-    ]
+    ] : [
+            {
+                text: "Home",
+                icon: <HomeIcon />,
+                component: <HomeView user={user} setUser={setUser} />
+            },
+            {
+                text: "Update Orders",
+                icon: <StoreIcon />,
+                component: <UpdateOrdersView user={user} setUser={setUser} />
+            },
+            {
+                text: "Sign out",
+                icon: <ExitToAppIcon />,
+                component: <SignOut user={user} setUser={setUser} />
+            }
+        ]
 }
 
 // Main Header Component
@@ -111,7 +121,7 @@ function Header({ user, setUser, currentView, setCurrentView }) {
                         Speedywash-Admin (IN)
                     </Typography>
                     <Typography>
-                        {`Hi, ${user.Name}`}
+                        {`Hi, ${user.Name} (${user.Roll})`}
                     </Typography>
                 </Toolbar>
             </AppBar>

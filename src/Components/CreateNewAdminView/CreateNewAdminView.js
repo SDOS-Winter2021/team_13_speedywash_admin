@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import "./styles.css"
 import firebase from "firebase";
-import { Button } from '@material-ui/core';
+import { Button, FormControl, MenuItem } from '@material-ui/core';
 import KEYS from '../../configs/KEYS';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
 
 function CreateNewAdminView() {
 
@@ -18,7 +20,7 @@ function CreateNewAdminView() {
     const [adminDetails, setAdminDetails] = useState({
         Email: "",
         Name: "",
-        Roll: ""
+        Roll: "Employee"
     })
 
     function handleSnackBarClosing() {
@@ -36,7 +38,7 @@ function CreateNewAdminView() {
                 setAdminDetails({
                     Email: "",
                     Name: "",
-                    Roll: ""
+                    Roll: "Employee"
                 });
                 setsnackObject((prev) => (
                     { ...prev, open: true }
@@ -50,7 +52,17 @@ function CreateNewAdminView() {
             <br />
             <TextField required value={adminDetails.Name} onChange={(event) => { setAdminDetails((prev) => ({ ...prev, Name: event.target.value })) }} id="standard-basic" label="Name" autoComplete="off" />
             <br />
-            <TextField required value={adminDetails.Roll} onChange={(event) => { setAdminDetails((prev) => ({ ...prev, Roll: event.target.value })) }} id="standard-basic" label="Roll" autoComplete="off" />
+            <br />
+            
+            <InputLabel>Account Type</InputLabel>
+            <Select
+                style={{ margin: 10, width: "15%" }}
+                labelId="Select account type"
+                value={adminDetails.Roll}
+                onChange={(e) => setAdminDetails((prev) => ({ ...prev, Roll: e.target.value }))} >
+                <MenuItem value={"Admin"}>Admin</MenuItem>
+                <MenuItem value={"Employee"}>Employee</MenuItem>
+            </Select>
             <br /><br />
             <Button variant="contained" disabled={adminDetails.Email == "" || adminDetails.Name == "" || adminDetails.Roll == ""} color="primary" onClick={handleSubmitAction} >Create Account</Button>
             <Snackbar open={snackObject.open} autoHideDuration={3000}
