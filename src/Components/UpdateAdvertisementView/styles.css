@@ -1,0 +1,8 @@
+.title {
+    text-align: center;
+    margin: 10px;
+}
+.inlineElement {
+    display: inline;
+    margin: 5%;
+}
