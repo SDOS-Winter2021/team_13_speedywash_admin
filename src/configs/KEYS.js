@@ -4,7 +4,8 @@ const KEYS = {
             ADMINS: "Admins",
             TEST: "Test",
             SERVICES: "homepage",
-            ORDERS: "incompleteOrders"
+            ORDERS: "incompleteOrders",
+            ADVERTISEMENT: "advertisement"
         },
         ATTRIBUTES: {
             NAME: "name",
