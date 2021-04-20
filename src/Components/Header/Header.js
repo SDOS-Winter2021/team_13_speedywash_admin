@@ -20,7 +20,6 @@ import HomeView from '../HomeView/HomeView';
 import UsersView from '../UsersView/UsersView';
 import UpdateServicesView from '../UpdateServicesView/UpdateServicesView';
 import CreateNewAdminView from '../CreateNewAdminView/CreateNewAdminView';
-import UpdateSubscriptionView from '../UpdateSubscriptionView/UpdateSubscriptionView';
 import UpdateAdvertisementView from '../UpdateAdvertisementView/UpdateAdvertisementView';
 import UpdateOrdersView from '../UpdateOrdersView/UpdateOrdersView';
 import SignOut from '../SignOut/SignOut';
@@ -69,11 +68,6 @@ function CreateDrawerItems(user, setUser) {
             text: "Create Admin Account",
             icon: <AddIcon />,
             component: <CreateNewAdminView user={user} setUser={setUser} />
-        },
-        {
-            text: "Update Subscriptions",
-            icon: <SubscriptionsIcon />,
-            component: <UpdateSubscriptionView user={user} setUser={setUser} />
         },
         {
             text: "Change Advertisement",
