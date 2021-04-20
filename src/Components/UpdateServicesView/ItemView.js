@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import "./styles.css"
-import initial from "./extra"
-import { setValue } from "../../configs/CacheManager";
 import TextField from '@material-ui/core/TextField';
-import firebase from "firebase";
 import { Button } from '@material-ui/core';
-import Delete from '@material-ui/icons/Delete';
-import KEYS from '../../configs/KEYS';
 import ItemElement from './ItemElement'
 
 /* Renders general layout for Individual Items */
