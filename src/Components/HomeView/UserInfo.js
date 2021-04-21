@@ -4,11 +4,14 @@ import KEYS from '../../configs/KEYS';
 import TextField from '@material-ui/core/TextField';
 
 function UserInfo(){
+    //Stats for user info
     const stats = [
-        {name: "Total Users", value: 8362},
-        {name: "Bussiness" , value: 1357689},
-        {name: "Users joined this week", value: 183}
+        {name: "Total Users", value: 12},
+        {name: "Bussiness" , value: 23948},
+        {name: "Users joined this week", value: 11}
     ]
+
+    //render Stats
     const _renderItem = (item) => {
         return (<div style = {{display:'flex', flexDirection:'row'}}>
             <TextField className = 'textField' value = {item.name}></TextField>

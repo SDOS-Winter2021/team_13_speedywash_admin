@@ -10,56 +10,59 @@ import {
 } from "recharts";
 import "./styles.css"
 
+//Data for graph
 const data = [
     {
       name: "Day 1",
-      "New Orders": 40,
-      "New Users": 12,
+      "New Orders": 2,
+      "New Users": 1,
       Bussiness: 24000
     },
     {
       name: "Day  2",
-      "New Orders": 30,
-      "New Users": 13,
+      "New Orders": 3,
+      "New Users": 1,
       Bussiness: 22100
     },
     {
       name: "Day 3",
-      "New Orders": 20,
-      "New Users": 9,
+      "New Orders": 1,
+      "New Users": 2,
       Bussiness: 2290
     },
     {
       name: "Day 4",
-      "New Orders": 52,
-      "New Users": 39,
+      "New Orders": 1,
+      "New Users": 3,
       Bussiness: 20000
     },
     {
       name: "Day 5",
-      "New Orders": 18,
-      "New Users": 8,
+      "New Orders": 2,
+      "New Users": 3,
       Bussiness: 21810
     },
     {
       name: "Day 6",
-      "New Orders": 23,
-      "New Users": 13,
+      "New Orders": 1,
+      "New Users": 4,
       Bussiness: 25000
     },
     {
       name: "Day 7",
-      "New Orders": 34,
-      "New Users": 23,
+      "New Orders": 2,
+      "New Users": 2,
       Bussiness: 21000
     }
   ];
 function GraphChart(){
+    //Rechart's components
     const [opacity, setOpacity] = useState({
         "New Orders": 1,
         "New Users": 1
       });
     
+      //Handles opacity of element
       const handleMouseEnter = useCallback(
         (o) => {
           const { dataKey } = o;
@@ -68,6 +71,8 @@ function GraphChart(){
         },
         [opacity, setOpacity]
       );
+
+      //Decreases opacity of elements
       const handleMouseLeave = useCallback(
         (o) => {
           const { dataKey } = o;

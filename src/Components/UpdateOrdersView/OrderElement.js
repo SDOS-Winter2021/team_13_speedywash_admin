@@ -11,6 +11,7 @@ import TextField from '@material-ui/core/TextField';
 import Delete from '@material-ui/icons/Delete';
 
 function OrderElement(props){
+    //render each order element in view order pane
     const name = props.currOrder.displayName;
     return (
         <div key={name} class="status" style={{ backgroundColor : "#D3D3D3" }}>
