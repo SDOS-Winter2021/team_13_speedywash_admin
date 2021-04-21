@@ -17,7 +17,7 @@ function OrderItemTable(props){
     // console.log(props.selectedOrder);
     //Create data for row
     const createData = (Service, Category, Item, Count, Price) => ({
-        id: Service.replace(" ", "_"),
+        id: Service.replace(" ", "_") + Category + Item + Count + Price,
         Service,
         Category,
         Item,
