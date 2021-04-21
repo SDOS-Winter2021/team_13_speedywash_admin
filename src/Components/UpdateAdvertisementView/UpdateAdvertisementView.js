@@ -94,7 +94,7 @@ function UpdateAdvertisementView() {
     }
 
     function handleDelete(item){
-        console.log(item);
+        //console.log(item);
         const extra = [...deletedAdvertisements, item];
         setdeletedAdvertisements(extra);
         const temp = {...advertisements};
