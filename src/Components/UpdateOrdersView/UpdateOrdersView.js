@@ -25,8 +25,8 @@ function UpdateOrdersView() {
             }) 
             setOrders(ordersList);
         });
-        
     },[])    
+    
     // console.log(orders);
     console.log(selectedOrder);
     return (

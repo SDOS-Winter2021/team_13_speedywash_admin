@@ -48,15 +48,15 @@ function CreateNewAdminView() {
 
     return (
         <div class={"formDiv"} >
-            <TextField required value={adminDetails.Email} onChange={(event) => { setAdminDetails((prev) => ({ ...prev, Email: event.target.value })) }} id="standard-basic" label="Email" autoComplete="off" autoFocus={true} />
+            <TextField style={{marginBottom:'1.2%', marginTop: '2%'}} required value={adminDetails.Email} onChange={(event) => { setAdminDetails((prev) => ({ ...prev, Email: event.target.value })) }} id="standard-basic" label="Email" autoComplete="off" autoFocus={true} />
             <br />
-            <TextField required value={adminDetails.Name} onChange={(event) => { setAdminDetails((prev) => ({ ...prev, Name: event.target.value })) }} id="standard-basic" label="Name" autoComplete="off" />
+            <TextField style={{marginBottom:'1.2%'}} required value={adminDetails.Name} onChange={(event) => { setAdminDetails((prev) => ({ ...prev, Name: event.target.value })) }} id="standard-basic" label="Name" autoComplete="off" />
             <br />
             <br />
             
-            <InputLabel>Account Type</InputLabel>
+            <InputLabel style ={{}}>Account Type</InputLabel>
             <Select
-                style={{ margin: 10, width: "15%" }}
+                style={{  }}
                 labelId="Select account type"
                 value={adminDetails.Roll}
                 onChange={(e) => setAdminDetails((prev) => ({ ...prev, Roll: e.target.value }))} >
@@ -64,7 +64,7 @@ function CreateNewAdminView() {
                 <MenuItem value={"Employee"}>Employee</MenuItem>
             </Select>
             <br /><br />
-            <Button variant="contained" disabled={adminDetails.Email == "" || adminDetails.Name == "" || adminDetails.Roll == ""} color="primary" onClick={handleSubmitAction} >Create Account</Button>
+            <Button style={{marginBottom:'5%'}} variant="contained" disabled={adminDetails.Email == "" || adminDetails.Name == "" || adminDetails.Roll == ""} color="primary" onClick={handleSubmitAction} >Create Account</Button>
             <Snackbar open={snackObject.open} autoHideDuration={3000}
                 onClose={handleSnackBarClosing}>
                 <Alert onClose={handleSnackBarClosing} severity={snackObject.type}>
