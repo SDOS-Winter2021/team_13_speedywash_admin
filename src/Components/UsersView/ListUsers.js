@@ -32,25 +32,40 @@ function ListUsers(props){
       };
 
     return (
-        <div class ="ListUsersView">
-      <div style={{textAlign:'center'}}>
-        <TextField className = 'textField' style={{margin:'3%'}} label='Search' defaultValue={filter}/>
-        <FormControl variant="outlined" className={classes.formControl} style={{margin:'3%'}}>
-          <InputLabel id="FilterID">Filter</InputLabel>
-          <Select
-            labelId="FilterLabel"
-            id="FilterID"
-            value={filter}
-            onChange={handleChange}
-            label="Filter"
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={"Name"}>Name</MenuItem>
-            <MenuItem value={"Mobile"}>Mobile</MenuItem>
-          </Select>
-        </FormControl>
+      <div class ="ListUsersView">
+        <div style={{textAlign:'center'}}>
+            <TextField className = 'textField' style={{margin:'3%'}} label='Search' defaultValue={filter}/>
+            <FormControl variant="outlined" className={classes.formControl} style={{margin:'3%'}}>
+            <InputLabel id="FilterID">Filter</InputLabel>
+            <Select
+                labelId="FilterLabel"
+                id="FilterID"
+                value={filter}
+                onChange={handleChange}
+                label="Filter"
+            >
+                <MenuItem value="">
+                <em>None</em>
+                </MenuItem>
+                <MenuItem value={"Name"}>Name</MenuItem>
+                <MenuItem value={"Mobile"}>Mobile</MenuItem>
+            </Select>
+            </FormControl>
+        </div>
+        <div>
+      {
+        Object.keys(props.users).map((id) => {
+        const singleUser = props.users[id]
+        console.log(singleUser)
+        return <div>
+          <UserItem
+            currUser = {singleUser}
+            selectedUser = {props.selectedUser} 
+            setSelectedUser = {props.setSelectedUser}>
+            </UserItem>
+          </div>
+        })
+      }
       </div>
       </div>
     )

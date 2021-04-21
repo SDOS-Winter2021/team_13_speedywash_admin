@@ -7,8 +7,8 @@ function UserItem(props){
     return (
         <div key={name} class="status" style={{ backgroundColor : "#D3D3D3" }}>
             <div style={{display: "flex" , flexDirection: "row"}}>
-                <Button style={{flex: 0.6}} onClick={()=>{props.setSelectedOrder(props.currUser); }}>{name}</Button>
-                <Button style={{flex: 0.6}} onClick={()=>{props.setSelectedOrder(props.currUser); }}>{props.currUser.phoneNumber}</Button>
+                <Button style={{flex: 0.6}} onClick={()=>{props.setSelectedUser(props.currUser); }}>{name}</Button>
+                <Button style={{flex: 0.6}} onClick={()=>{props.setSelectedUser(props.currUser); }}>{props.currUser.phoneNumber}</Button>
             </div>           
         </div>
     )

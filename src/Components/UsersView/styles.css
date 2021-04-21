@@ -35,12 +35,15 @@
     text-align: center;
     
 }
+.textFieldView{
+    padding: 5%;
+    margin-left: 8%;
+    display: inline;
+}
 .textField {
-    display: flex;
-    margin: 2%;
-    padding: 4%;
-    margin-left: 5%;
-    
+    margin-left: 5%;   
+    padding-bottom: 5%;
+    margin-bottom: 5%;
 }
 .subViewTitle {
     margin-top: 5px;

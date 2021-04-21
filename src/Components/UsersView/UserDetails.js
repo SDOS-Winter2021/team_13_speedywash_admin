@@ -19,18 +19,23 @@ function UserDetails(props){
       
       return (
         <div class ="userDetails">
-            <div class="subViewTitle" style = {{marginBottom: "2%"}}>
+            <div class="subViewTitle" style = {{marginBottom: "4%"}}>
                 <h3>User Details</h3>
             </div>
             <div className = 'orderData'>
-                <div className = 'textFieldView'>
-                <TextField className = 'textField' InputProps={{ classes }} label="Name" />
-                <TextField className = 'textField' InputProps={{ classes }} label="Mobile Number" />
-                <TextField className = 'textField' InputProps={{ classes }} label="Email" />
-                <TextField className = 'textField' InputProps={{ classes }} label="Creation Time" />
+                <div className = 'textFieldView' >
+                    <TextField className = "textField" InputProps={{ classes }} label="Name" defaultValue={props.selectedUser.displayName}/>
+                    <TextField className = "textField" InputProps={{ classes }} label="Mobile Number" defaultValue={props.selectedUser.phoneNumber}/>
+                    <TextField className = "textField" InputProps={{ classes }} style={{width:'40%'}} label="Email" defaultValue={props.selectedUser.email} />
                 </div>
                 <div className = 'textFieldView'>
-                
+                    <TextField className = "textField" InputProps={{ classes }} style={{paddingRight:'5%',width:'90%'}} label="Home Address" defaultValue={props.selectedUser.home}/>
+                </div>
+                <div className = 'textFieldView'>
+                    <TextField className = "textField" InputProps={{ classes }} style={{paddingRight:'5%',width:'90%'}} label="Office Address" defaultValue={props.selectedUser.office}/>
+                </div>
+                <div className = 'textFieldView'>
+                    <TextField className = "textField" InputProps={{ classes }} style={{paddingRight:'5%',width:'90%'}} label="Other Address" defaultValue={props.selectedUser.other}/>
                 </div>
             </div>
 

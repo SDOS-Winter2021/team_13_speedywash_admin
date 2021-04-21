@@ -20,13 +20,24 @@ function UsersView() {
             setUsers(userList);
         });
     },[])    
-    console.log(users);
+    //console.log(users);
 
     return (
         <div>
             <h1 className="title">User's Info</h1>
-            <ListUsers></ListUsers>
-            <UserDetails></UserDetails>
+            <div>
+                {users.size !== '' ?  <ListUsers
+                users = {users} 
+                setUsers = {setUsers}
+                selectedUser = {selectedUser} 
+                setSelectedUser = {setSelectedUser}>
+                </ListUsers>: null}
+                
+            {selectedUser !== '' ? <UserDetails
+            selectedUser = {selectedUser}
+            setSelectedUser = {setSelectedUser}>
+            </UserDetails> : null}
+            </div>
         </div>
     )
 }

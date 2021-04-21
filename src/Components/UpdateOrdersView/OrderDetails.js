@@ -23,7 +23,7 @@ function OrdersDetails(props){
 
     return (
     <div class ="ordersDetails">
-        <div class="subViewTitle" style = {{marginBottom: "2%"}}>
+        <div class="subViewTitle" style = {{marginBottom: "4%"}}>
             <h3>Order Details</h3>
         </div>
         <div className = 'orderData'>
@@ -34,7 +34,7 @@ function OrdersDetails(props){
             <TextField className = 'textField' InputProps={{ classes }} label="PickUp Address" defaultValue={props.selectedOrder.pickUpAddress}/>
             </div>
             <div className = 'textFieldView'>
-            <TextField className = 'textField' InputProps={{ classes }} style={{paddingRight:'10%',width:'50%'}}label="PickUp Time" defaultValue={props.selectedOrder.orderTimeString}/>
+            <TextField className = 'textField' InputProps={{ classes }} style={{paddingRight:'10%',width:'50%'}} label="PickUp Time" defaultValue={props.selectedOrder.orderTimeString}/>
             <TextField className = 'textField' InputProps={{ classes }} label="Total Amount" defaultValue={props.selectedOrder.totalAmount}/>
             <TextField className = 'textField' InputProps={{ classes }} label="Current Status" defaultValue={props.selectedOrder.orderStatus.message}/>
             </div>
