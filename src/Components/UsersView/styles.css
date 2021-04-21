@@ -1,0 +1,48 @@
+.title {
+    text-align: center;
+    margin: 10px;
+}
+.userDetails{
+    width: 56%;
+    height: auto;
+    margin: 5px;
+    margin-right: 5%;
+    margin-left: 2%;
+    margin-top: 2%;
+    border-style: solid;
+    border-width: 1px;
+    border-color: gray;
+    display: inline-block;
+    vertical-align: text-top;
+}
+.ListUsersView {
+    width: 30%;
+    height: auto;
+    margin: 5px;
+    margin-right: 2%;
+    margin-left: 5%;
+    margin-top: 2%;
+    border-style: solid;
+    border-width: 1px;
+    border-color: gray;
+    display: inline-block;
+    vertical-align: text-top;
+}
+.userButtonView{
+    margin: 10px;
+    border-radius: 5px 5px;
+    flex : 1;
+    text-align: center;
+    
+}
+.textField {
+    display: flex;
+    margin: 2%;
+    padding: 4%;
+    margin-left: 5%;
+    
+}
+.subViewTitle {
+    margin-top: 5px;
+    text-align: center;
+}

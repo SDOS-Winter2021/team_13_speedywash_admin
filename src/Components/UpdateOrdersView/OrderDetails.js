@@ -47,7 +47,7 @@ function OrdersDetails(props){
         <div class="orderButtonView">
             <Button style={{backgroundColor: "#87CEFA", margin:'1%',paddingBottom:'0.5%'}}>Upgrade Status</Button>
             <Button style={{backgroundColor: "#87CEFA", margin:'1%',paddingBottom:'0.5%'}}>Downgrade Status</Button>
-            <Button style={{backgroundColor: "#D98880", margin:'2%'}} onClick >Discard Changes</Button>
+            <Button style={{backgroundColor: "#D98880", margin:'2%'}}>Discard Changes</Button>
             <Button style={{backgroundColor: "#82E0AA", margin:'2%'}}>Accept Changes</Button>
         </div>
     </div>)
