@@ -8,7 +8,10 @@ function UpdateAdvertisementView() {
     const [newImage, setnewImage] = useState({});
     const [advertisements, setAdvertisements] = useState({
     });
+    const [deletedAdvertisements, setdeletedAdvertisements] = useState([
     
+    ]);
+
     // fetch existing advertisements and store them in a state variable
     useEffect(()=>
     {
@@ -60,6 +63,7 @@ function UpdateAdvertisementView() {
 
 // In case admin doesn't want to save changes to database, it will be fetched again from firebase
     function discardChanges(){
+        setdeletedAdvertisements([]);
         setAdvertisements({});
         firebase.firestore()
         .collection(KEYS.DATABASE.COLLECTIONS.ADVERTISEMENT)
@@ -75,10 +79,32 @@ function UpdateAdvertisementView() {
         firebase.firestore()
         .collection(KEYS.DATABASE.COLLECTIONS.ADVERTISEMENT)
         .doc("list")
-        .set(advertisements)
+        .set(advertisements);
+        // delete images from storage as well
+        deletedAdvertisements.map((key)=>{
+            const ref=firebase.storage().ref(`advertisements/${key}`);
+            ref.delete().then(()=>{
+                console.log(key+"deleted successfully");
+            }).catch((error)=>{
+                console.log(error);
+            })
+        });
+        setdeletedAdvertisements([]);
         //console.log("firestore updated");
     }
 
+    function handleDelete(item){
+        console.log(item);
+        const extra = [...deletedAdvertisements, item];
+        setdeletedAdvertisements(extra);
+        const temp = {...advertisements};
+        delete temp[item];
+        setAdvertisements(temp);
+        // firebase.firestore()
+        // .collection(KEYS.DATABASE.COLLECTIONS.ADVERTISEMENT)
+        // .doc("list")
+        // .set(advertisements)
+    }
     return (
         <div>
             <h1 class="title">Advertisements</h1>
@@ -97,12 +123,12 @@ function UpdateAdvertisementView() {
                 Object.keys(advertisements).map((item) => {
                     //console.log(advertisements);
                     return (
-                        <div style={{display: 'inline-flex', flexDirection: 'column', width: "30%"}}>
+                        <div key={item} style={{display: 'inline-flex', flexDirection: 'column', width: "30%"}}>
                             <div style={{display: 'flex', flexDirection: 'row', alignSelf: 'center'}}>
                                 <img class="itemContainer" src={advertisements[item]} alt="Advertisement Image" />
                             </div>
                             <Button class="deleteButton" onClick={() =>{
-                                console.log(item);
+                                handleDelete(item)
                             }}>Delete Advertisement</Button>
                         </div>
                     )
