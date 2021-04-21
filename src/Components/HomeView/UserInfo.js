@@ -5,9 +5,9 @@ import TextField from '@material-ui/core/TextField';
 
 function UserInfo(){
     const stats = [
-        {name: "Total Users", value: 8362},
-        {name: "Bussiness" , value: 1357689},
-        {name: "Users joined this week", value: 183}
+        {name: "Total Users", value: 12},
+        {name: "Bussiness" , value: 23948},
+        {name: "Users joined this week", value: 11}
     ]
     const _renderItem = (item) => {
         return (<div style = {{display:'flex', flexDirection:'row'}}>

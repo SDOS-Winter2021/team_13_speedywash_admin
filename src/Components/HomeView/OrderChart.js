@@ -5,10 +5,10 @@ import KEYS from '../../configs/KEYS';
 
 
 const data = [
-    { name: "Completed Orders", value: 400 },
-    { name: "PickUp Pending", value: 300 },
-    { name: "Service Pending", value: 200 },
-    { name: "Delivery Pending", value: 200 }
+    { name: "Completed Orders", value: 2 },
+    { name: "PickUp Pending", value: 3 },
+    { name: "Service Pending", value: 4 },
+    { name: "Delivery Pending", value: 3 }
   ];
   
 const renderActiveShape = (props) => {
