@@ -11,7 +11,10 @@ import TextField from '@material-ui/core/TextField';
 import OrderElement from './OrderElement';
 
 function OrdersView(props){
+  //render pane to display order for selection
     console.log(props);
+
+  //style for search bar
   const useStyles = makeStyles((theme) => ({
         formControl: {
           margin: theme.spacing(1),
@@ -23,6 +26,8 @@ function OrdersView(props){
       }));
 
     const classes = useStyles();
+
+    //filter for search bar
     const [filter, setFilter] = React.useState('');
     
       const handleChange = (event) => {

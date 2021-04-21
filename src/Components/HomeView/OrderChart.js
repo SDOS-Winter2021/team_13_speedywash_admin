@@ -3,7 +3,7 @@ import { PieChart, Pie, Sector } from "recharts";
 import "./styles.css"
 import KEYS from '../../configs/KEYS';
 
-
+//Data for Pie Chart
 const data = [
     { name: "Completed Orders", value: 2 },
     { name: "PickUp Pending", value: 3 },
@@ -11,6 +11,7 @@ const data = [
     { name: "Delivery Pending", value: 3 }
   ];
   
+//function to render shape of the pie in piechart
 const renderActiveShape = (props) => {
     const RADIAN = Math.PI / 180;
     const {
@@ -36,6 +37,7 @@ const renderActiveShape = (props) => {
     const ey = my;
     const textAnchor = cos >= 0 ? "start" : "end";
   
+
     return (
       <g>
         <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill}>
@@ -83,7 +85,8 @@ const renderActiveShape = (props) => {
       </g>
     );
   };
-  
+
+  //Function to create the whole pie chart
 function OrderChart(){
     const [activeIndex, setActiveIndex] = useState(0);
     const onPieEnter = useCallback(

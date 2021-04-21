@@ -3,6 +3,7 @@ import "./styles.css"
 import OrderChart from './OrderChart'
 
 function OrderStats(){
+    //Order stats box in pie chart
     const totalOrders = 12;
     return (
         <div className = 'orderbox'>

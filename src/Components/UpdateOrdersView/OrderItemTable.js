@@ -12,10 +12,10 @@ import IconButton from "@material-ui/core/IconButton";
 import EditIcon from "@material-ui/icons/EditOutlined";
 import DoneIcon from "@material-ui/icons/DoneAllTwoTone";
 import RevertIcon from "@material-ui/icons/NotInterestedOutlined";
-import { Button } from '@material-ui/core';
 
 function OrderItemTable(props){
-    console.log(props.selectedOrder);
+    // console.log(props.selectedOrder);
+    //Create data for row
     const createData = (Service, Category, Item, Count, Price) => ({
         id: Service.replace(" ", "_"),
         Service,
@@ -25,6 +25,8 @@ function OrderItemTable(props){
         Price,
         isEditMode: false
       });
+
+      //Object destructuring for rows
     function parseUserData(data){
       var toPass = [];
       const services = Object.keys(data);
@@ -42,6 +44,7 @@ function OrderItemTable(props){
       
     }
     
+    //use state for each row in table
     const [rows, setRows] = useState(
         parseUserData(props.selectedOrder.orderItems)
 
@@ -68,7 +71,8 @@ function OrderItemTable(props){
           height: 40
         }
       }));
-
+      
+      //Create row in table
       const CustomTableCell = ({ row, name, onChange }) => {
         const classes = useStyles();
         const { isEditMode } = row;
@@ -89,6 +93,8 @@ function OrderItemTable(props){
       };
     const [previous, setPrevious] = React.useState({});
     const classes = useStyles();
+
+    //Handle edit mode for rows
     const onToggleEditMode = id => {
         setRows(state => {
           return rows.map(row => {
@@ -99,6 +105,8 @@ function OrderItemTable(props){
           });
         });
       };
+
+    //handle change in rows
     const onChange = (e, row) => {
         if (!previous[row.id]) {
           setPrevious(state => ({ ...state, [row.id]: row }));
@@ -114,6 +122,7 @@ function OrderItemTable(props){
         });
         setRows(newRows);
       };
+      //On discarding changes
       const onRevert = id => {
         const newRows = rows.map(row => {
           if (row.id === id) {
