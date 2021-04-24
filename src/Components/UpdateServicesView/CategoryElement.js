@@ -38,7 +38,7 @@ function CategoryElement(props){
                     </Button>
                     </div>
                     {   edit==true &&
-                        <div>
+                        <div class="flexRow">
                             <div class="textField">
                                 <TextField value={newName} onChange={(event)=>{setNewName(event.target.value)}} label="Enter New Name"></TextField>
                             </div>
