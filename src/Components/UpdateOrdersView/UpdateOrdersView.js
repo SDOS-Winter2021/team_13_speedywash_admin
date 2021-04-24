@@ -17,11 +17,12 @@ function UpdateOrdersView() {
 
     useEffect(() => {
         firebase.firestore().collection(KEYS.DATABASE.COLLECTIONS.ORDERS).onSnapshot((records) => {
-            let ordersList = [];
-            setOrders([]);
+            let ordersList = {};
+            setOrders({});
             records.forEach((doc) => {
-                ordersList.push(doc.data());
+                ordersList = {...ordersList, [doc.id] : doc.data()};
             })
+            //console.log(ordersList);
             setOrders(ordersList);
         });
     }, [])
@@ -47,7 +48,10 @@ function UpdateOrdersView() {
 
                 {selectedOrder !== '' ? <OrdersDetails
                     selectedOrder={selectedOrder}
-                    setSelectedOrder={setSelectedOrder} />
+                    setSelectedOrder={setSelectedOrder}
+                    setSelectedStatus={setSelectedStatus}
+                    orders={orders}
+                    setOrders={setOrders} />
                     : <div />}
             </div>
         </div>

@@ -15,7 +15,7 @@ function StatusView(props){
 
     //Render the statusus on top for selection
     const _renderItem = (item) => {
-        return (<div class="status">
+        return (<div class="status" key={item.name}>
             <Button onClick={()=>{props.setSelectedStatus(item.name);props.setSelectedOrder('')} } style={{ backgroundColor : props.selectedStatus === item.name ? "#CFCCCC" : null}}>{item.name}</Button>        
         </div>)
     }
