@@ -56,12 +56,12 @@ function OrdersView(props) {
 			</FormControl>
 		</div>
 		<div>
-			{
+			{	props.orders=={} ||
 				Object.keys(props.orders).map((id) => {
 					const singleOrders = props.orders[id]
 					// console.log(singleOrders)
 					return Object.values(singleOrders).map((order) => {
-						return <div>
+						return <div key={order.oid}>
 							{order.orderStatus['message'] == props.selectedStatus ?
 								<OrderElement
 									currOrder={order}

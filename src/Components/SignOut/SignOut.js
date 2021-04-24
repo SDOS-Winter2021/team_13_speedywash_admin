@@ -13,8 +13,8 @@ function SignOut({ user, setUser }) {
     }, [])
     return (
         <div>
-            <h1>
-                Sign out
+            <h1 style={{textAlign: 'center'}}>
+                We are signing you out
             </h1>
         </div>
     )

@@ -42,14 +42,14 @@
 .textFieldView{
     padding: 2%;
     justify-content: center;
-    
+    display: flex;
+    justify-content: space-between;
 }
 .textField {
     display: flex;
     margin: 2%;
     padding: 4%;
-    margin-left: 5%;
-    
+    flex: 0.4;
 }
 .subViewTitle {
     margin-top: 5px;
