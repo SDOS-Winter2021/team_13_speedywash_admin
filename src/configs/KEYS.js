@@ -31,7 +31,29 @@ const KEYS = {
         HOUR: 60 * 60 * 1000,
         DAY: 24 * 60 * 60 * 1000,
         WEEK: 7 * 24 * 60 * 60 * 1000
-    }
+    },
+	orderStatus: {
+		PLACED: {
+			stage: 1,
+			stageName: "PLACED",
+			message: "Pickup Pending"
+		},
+		PICKUPDONE: {
+			stage: 2,
+			stageName: "PICKUPDONE",
+			message: "Service Pending"
+		},
+		SERVICEDONE: {
+			stage: 3,
+			stageName: "SERVICEDONE",
+			message: "Delivery Pending"
+		},
+		COMPLETED: {
+			stage: 4,
+			stageName: "COMPLETED",
+			message: "Completed"
+		}
+	}
 }
 
 export default KEYS;

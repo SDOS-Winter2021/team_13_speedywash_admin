@@ -13,44 +13,42 @@ function UpdateOrdersView() {
     const [orders, setOrders] = useState('');
     const [selectedOrder, setSelectedOrder] = useState('');
     const [selectedStatus, setSelectedStatus] = useState('');
-    
 
-    useEffect(()=>
-    {
+
+    useEffect(() => {
         firebase.firestore().collection(KEYS.DATABASE.COLLECTIONS.ORDERS).onSnapshot((records) => {
             let ordersList = [];
             setOrders([]);
-            records.forEach((doc)=>{       
+            records.forEach((doc) => {
                 ordersList.push(doc.data());
-            }) 
+            })
             setOrders(ordersList);
         });
-    },[])    
-    
+    }, [])
+
     // console.log(orders);
-    console.log(selectedOrder);
+    // console.log(selectedOrder);
     return (
         <div>
             <h1 className="title">Orders</h1>
             <StatusView
-            selectedStatus = {selectedStatus}
-            setSelectedStatus = {setSelectedStatus}
-            setSelectedOrder = {setSelectedOrder}>
-            </StatusView>
+                selectedStatus={selectedStatus}
+                setSelectedStatus={setSelectedStatus}
+                setSelectedOrder={setSelectedOrder} />
             <div>
-                {orders.size !== '' ?  <OrdersView
-                selectedStatus = {selectedStatus}
-                setSelectedStatus = {setSelectedStatus}
-                orders = {orders} 
-                setOrders = {setOrders}
-                selectedOrder = {selectedOrder} 
-                setSelectedOrder = {setSelectedOrder}>
-                </OrdersView>: null}
-                
-            {selectedOrder !== '' ? <OrdersDetails
-            selectedOrder= {selectedOrder}
-            setSelectedOrder = {setSelectedOrder}>
-            </OrdersDetails> : null}
+                {orders.size !== '' ? <OrdersView
+                    selectedStatus={selectedStatus}
+                    setSelectedStatus={setSelectedStatus}
+                    orders={orders}
+                    setOrders={setOrders}
+                    selectedOrder={selectedOrder}
+                    setSelectedOrder={setSelectedOrder} />
+                    : <div />}
+
+                {selectedOrder !== '' ? <OrdersDetails
+                    selectedOrder={selectedOrder}
+                    setSelectedOrder={setSelectedOrder} />
+                    : <div />}
             </div>
         </div>
     )
