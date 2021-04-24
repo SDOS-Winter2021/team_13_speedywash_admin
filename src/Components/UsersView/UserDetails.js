@@ -24,15 +24,15 @@ function UserDetails(props){
             </div>
             <div className = 'orderData'>
                 <div className = 'textFieldView' >
-                    <TextField className = "textField" InputProps={{ classes }} label="Name" defaultValue={props.selectedUser.displayName}/>
-                    <TextField className = "textField" InputProps={{ classes }} label="Mobile Number" defaultValue={props.selectedUser.phoneNumber}/>
-                    <TextField className = "textField" InputProps={{ classes }} style={{width:'40%'}} label="Email" defaultValue={props.selectedUser.email} />
+                    <TextField className = "textField" InputProps={{ classes }} label="Name" value={props.selectedUser.displayName}/>
+                    <TextField className = "textField" InputProps={{ classes }} label="Mobile Number" value={props.selectedUser.phoneNumber}/>
+                    <TextField className = "textField" InputProps={{ classes }} style={{width:'40%'}} label="Email" value={props.selectedUser.email} />
                 </div>
                 <div className = 'textFieldView'>
-                    <TextField className = "textField" InputProps={{ classes }} style={{paddingRight:'5%',width:'90%'}} label="Home Address" defaultValue={props.selectedUser.home}/>
+                    <TextField className = "textField" InputProps={{ classes }} style={{paddingRight:'5%',width:'90%'}} label="Home Address" value={props.selectedUser.home}/>
                 </div>
                 <div className = 'textFieldView'>
-                    <TextField className = "textField" InputProps={{ classes }} style={{paddingRight:'5%',width:'90%'}} label="Office Address" defaultValue={props.selectedUser.office}/>
+                    <TextField className = "textField" InputProps={{ classes }} style={{paddingRight:'5%',width:'90%'}} label="Office Address" value={props.selectedUser.office}/>
                 </div>
                 <div className = 'textFieldView'>
                     <TextField className = "textField" InputProps={{ classes }} style={{paddingRight:'5%',width:'90%'}} label="Other Address" defaultValue={props.selectedUser.other}/>
