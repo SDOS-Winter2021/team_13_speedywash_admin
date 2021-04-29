@@ -15,6 +15,9 @@
     display: inline-block;
     vertical-align: text-top;
 }
+.orderData{
+    padding: 5%;
+}
 .ListUsersView {
     width: 30%;
     height: auto;

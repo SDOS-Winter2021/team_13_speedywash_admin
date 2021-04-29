@@ -8,10 +8,6 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Input from "@material-ui/core/Input";
 import Paper from "@material-ui/core/Paper";
-import IconButton from "@material-ui/core/IconButton";
-import EditIcon from "@material-ui/icons/EditOutlined";
-import DoneIcon from "@material-ui/icons/DoneAllTwoTone";
-import RevertIcon from "@material-ui/icons/NotInterestedOutlined";
 
 function OrderItemTable(props) {
 	// console.log(props.selectedOrder);
@@ -155,29 +151,6 @@ function OrderItemTable(props) {
 					{rows.map(row => (
 						<TableRow key={row.id}>
 							<TableCell className={classes.selectTableCell}>
-								{row.isEditMode ? (
-									<>
-										<IconButton
-											aria-label="done"
-											onClick={() => onToggleEditMode(row.id)}
-										>
-											<DoneIcon />
-										</IconButton>
-										<IconButton
-											aria-label="revert"
-											onClick={() => onRevert(row.id)}
-										>
-											<RevertIcon />
-										</IconButton>
-									</>
-								) : (
-									<IconButton
-										aria-label="delete"
-										onClick={() => onToggleEditMode(row.id)}
-									>
-										<EditIcon />
-									</IconButton>
-								)}
 							</TableCell>
 							<CustomTableCell {...{ row, name: "Service", onChange }} />
 							<CustomTableCell {...{ row, name: "Category", onChange }} />

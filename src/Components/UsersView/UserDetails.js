@@ -34,14 +34,9 @@ function UserDetails(props){
                 <div className = 'textFieldView'>
                     <TextField className = "textField" InputProps={{ classes }} style={{paddingRight:'5%',width:'90%'}} label="Office Address" value={props.selectedUser.office}/>
                 </div>
-                <div className = 'textFieldView'>
+                <div className = 'textFieldView' styles = {{margin: '10px'}}>
                     <TextField className = "textField" InputProps={{ classes }} style={{paddingRight:'5%',width:'90%'}} label="Other Address" defaultValue={props.selectedUser.other}/>
                 </div>
-            </div>
-
-            <div class="userButtonView">
-                <Button style={{backgroundColor: "#82E0AA", margin:'2%'}}>Accept Changes</Button>
-                <Button style={{backgroundColor: "#D98880", margin:'2%'}}>Discard Changes</Button>
             </div>
         </div>)
 }
