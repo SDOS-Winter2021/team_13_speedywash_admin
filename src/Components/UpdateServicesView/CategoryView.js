@@ -1,3 +1,6 @@
+/**
+ * @module
+ */
 import React, { useState, useEffect } from 'react';
 import "./styles.css"
 import initial from "./extra"
@@ -9,8 +12,12 @@ import Delete from '@material-ui/icons/Delete';
 import KEYS from '../../configs/KEYS';
 import CategoryElement from "./CategoryElement"
 
-/* This View renders the overall layout of the categories */
 
+/**
+ * This View renders the overall layout of the categories
+ * @param {Object} props 
+ * @returns {div} - React Component div
+ */
 function CategoryView(props){
     const [newCategory, setNewCategory] = useState("");
     const selectedService=props.selectedService;

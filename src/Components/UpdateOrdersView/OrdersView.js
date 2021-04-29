@@ -1,3 +1,6 @@
+/**
+ * @module
+ */
 import React, { useState, useEffect } from 'react';
 import "./styles.css"
 import { Button } from '@material-ui/core';
@@ -10,11 +13,16 @@ import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
 import OrderElement from './OrderElement';
 
+/**
+ * Render pane to display order for selection
+ * @param {Object} props - List of orders
+ * @returns {div} - React Component div
+ */
 function OrdersView(props) {
-	//render pane to display order for selection
-	// console.log(props);
-
-	//style for search bar
+	/*
+		style for search bar
+	*/
+	
 	const useStyles = makeStyles((theme) => ({
 		formControl: {
 			margin: theme.spacing(1),
@@ -27,8 +35,12 @@ function OrdersView(props) {
 
 	const classes = useStyles();
 
-	//filter for search bar
+	
+	/*
+		filter for search bar
+	*/
 	const [filter, setFilter] = React.useState('');
+
 
 	const handleChange = (event) => {
 		setFilter(event.target.value);

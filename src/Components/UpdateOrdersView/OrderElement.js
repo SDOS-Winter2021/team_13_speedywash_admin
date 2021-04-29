@@ -1,9 +1,16 @@
+/**
+ * @module
+ */
 import React, { useState, useEffect } from 'react';
 import "./styles.css"
 import { Button } from '@material-ui/core';
 
+/**
+ * Render each order element in select order pane
+ * @param {Object} props - Object which contains order details to display in the list section
+ * @returns {div} - React Component div
+ */
 function OrderElement(props){
-    //render each order element in view order pane
     const name = props.currOrder.displayName;
     return (
         <div key={name} class="status" style={{ backgroundColor : props.selectedOrder===props.currOrder ? "#D3D3D3" : null }}>

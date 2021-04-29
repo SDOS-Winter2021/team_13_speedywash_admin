@@ -1,8 +1,17 @@
+/**
+ * @module
+ */
 import React, { useState, useEffect } from 'react';
 import "./styles.css"
 import { Button } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
+
+/**
+ * Renders the pane to display user details.
+ * @param {Object} props - An object which contain details of the selected user
+ * @returns {div} - React Component div
+ */
 
 function UserDetails(props){
     const useStyles = makeStyles({

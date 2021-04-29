@@ -1,3 +1,6 @@
+/**
+ * @module
+ */
 import React, { useState, useEffect } from 'react';
 import "./styles.css"
 import initial from "./extra"
@@ -9,8 +12,11 @@ import Delete from '@material-ui/icons/Delete';
 import KEYS from '../../configs/KEYS';
 import ServiceElement from './ServiceElement'
 
-/* Renders General Layout for Service's View */
-
+/**
+ * Renders General Layout for Service's View
+ * @param {Object} props 
+ * @returns {div} - React component div
+ */
 function ServiceView(props){
     const [newService, setNewService] = useState("");
     return (

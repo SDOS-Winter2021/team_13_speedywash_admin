@@ -1,3 +1,6 @@
+/**
+ * @module
+ */
 import React, { useState, useEffect } from 'react'
 import "./styles.css"
 import { setValue } from "../../configs/CacheManager";
@@ -10,8 +13,19 @@ import { Button } from '@material-ui/core';
 
 function UpdateOrdersView() {
 
+    /*
+        Stores the object of all orders
+    */
     const [orders, setOrders] = useState('');
+
+    /*
+        Stores the object of selected order
+    */
     const [selectedOrder, setSelectedOrder] = useState('');
+    
+    /*
+        Stores the status of selected status
+    */
     const [selectedStatus, setSelectedStatus] = useState('');
 
 
@@ -27,8 +41,6 @@ function UpdateOrdersView() {
         });
     }, [])
 
-    // console.log(orders);
-    // console.log(selectedOrder);
     return (
         <div>
             <h1 className="title">Orders</h1>

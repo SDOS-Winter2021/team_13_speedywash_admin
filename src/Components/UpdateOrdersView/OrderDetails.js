@@ -1,3 +1,6 @@
+/**
+ * @module
+ */
 import React, { useState, useEffect } from 'react';
 import "./styles.css"
 import { Button } from '@material-ui/core';
@@ -7,7 +10,11 @@ import OrderItemTable from './OrderItemTable';
 import firebase from "firebase";
 import KEYS from '../../configs/KEYS';
 
-
+/**
+ * Responsible for rendering the section to display details about the selected order
+ * @param {Object} props - An object
+ * @returns {div} - React component div
+ */
 function OrdersDetails(props) {
 	//Order details box in order page
 	const useStyles = makeStyles({
@@ -22,6 +29,9 @@ function OrdersDetails(props) {
 	});
 	const classes = useStyles();
 
+	/*
+		Function to upgrade the order status of current order
+	*/
 	const handleUpgrade = ()=> {
 		props.setSelectedOrder('');
 	//	props.setSelectedStatus('');
