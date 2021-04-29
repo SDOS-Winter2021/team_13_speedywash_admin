@@ -1,3 +1,6 @@
+/**
+ * @module
+ */
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -42,11 +45,13 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-/*
-    Contains all the Views that are available
-    and they will be displayed in app left 
-    drawer window
-*/
+/**
+ * Contains all the Views that are available and they will be displayed in app left drawer window
+ * 
+ * @param {Object} user - Object of the current user
+ * @param {function} setUser - Function to set current user
+ * @returns {List} - Items to be rendered for the drawer according to user type
+ */
 function CreateDrawerItems(user, setUser) {
     return user.Roll == "Admin" ? [
         {
@@ -103,13 +108,20 @@ function CreateDrawerItems(user, setUser) {
         ]
 }
 
-// Main Header Component
+/**
+ * Renders the Main Header Component 
+ * @param {Object} obj - An Object
+ * @returns {div} - React Component div
+ */
 function Header({ user, setUser, currentView, setCurrentView }) {
     const classes = useStyles();
-
-    // Generating List of Drawer Items
+    
+    /* 
+    Generating and storing list of Drawer Items
+    */
     const drawerList = CreateDrawerItems(user, setUser);
 
+    
     return (
         <div>
             <AppBar position="static">

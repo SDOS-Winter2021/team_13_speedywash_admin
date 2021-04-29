@@ -1,7 +1,15 @@
+/**
+ * @module
+ */
+
 import React, { useState, useEffect, PureComponent } from 'react';
 import "./styles.css"
 import GraphChart from './GraphChart'
 
+/**
+ * Renders the linechart box
+ * @returns {div} React Component Div
+ */
 function GraphStats(){
     //Graph box in homepage
     return (

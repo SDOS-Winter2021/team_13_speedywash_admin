@@ -1,5 +1,11 @@
+/**
+ * @module
+ */
 import firebase from "firebase";
 
+/**
+ * First file that is called in order initialize firebase
+ */
 var firebaseConfig = {
     apiKey: "AIzaSyAxl-nPQvRB02LCVPRgSMwX3eoCqbhysBY",
     authDomain: "speedywash-7d67a.firebaseapp.com",

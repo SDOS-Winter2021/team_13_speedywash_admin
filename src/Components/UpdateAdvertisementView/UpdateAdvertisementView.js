@@ -1,8 +1,12 @@
+/**
+ * @module
+ */
 import React, { useState, useEffect } from 'react';
 import "./styles.css"
 import { Button } from '@material-ui/core';
 import firebase from "firebase";
 import KEYS from '../../configs/KEYS';
+
 
 function UpdateAdvertisementView() {
     const [newImage, setnewImage] = useState({});

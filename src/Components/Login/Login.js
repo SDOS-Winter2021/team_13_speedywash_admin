@@ -1,3 +1,7 @@
+/**
+ * @module
+ */
+
 import React, { useState } from 'react'
 import firebase from "firebase";
 import { Button } from '@material-ui/core';
@@ -8,9 +12,17 @@ import { setValue } from "../../configs/CacheManager"
 import "./styles.css"
 
 
+/**
+ * 
+ * @param {Object} obj - An object which contains a function to set current user
+ * @returns {div} - React Component div
+ */
 function Login({ setUser }) {
 
-    // Snack bar object to report message to the user
+    
+    /*
+        Snack bar object to report message to the user
+    */
     const [snackObject, setsnackObject] = useState({
         open: false,
         message: "",

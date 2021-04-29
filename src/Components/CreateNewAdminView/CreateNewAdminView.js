@@ -1,3 +1,6 @@
+/**
+ * @module
+ */
 import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import "./styles.css"
@@ -9,14 +12,22 @@ import Alert from '@material-ui/lab/Alert';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 
+/**
+ * Renders Create New user view
+ * Allows current user to generate two types of new users: Admin and Employee type
+ * 
+ * @returns {div} - React Component div
+ */
 function CreateNewAdminView() {
-
+    
     const [snackObject, setsnackObject] = useState({
         open: false,
         message: "User Created Successfully",
         type: "success",
     })
-
+    /*
+        Stores the details of new user
+    */
     const [adminDetails, setAdminDetails] = useState({
         Email: "",
         Name: "",
@@ -46,6 +57,9 @@ function CreateNewAdminView() {
             })
     }
 
+    /*
+        Renders the main form for creating user.
+    */
     return (
         <div class={"formDiv"} >
             <TextField style={{marginBottom:'1.2%', marginTop: '2%'}} required value={adminDetails.Email} onChange={(event) => { setAdminDetails((prev) => ({ ...prev, Email: event.target.value })) }} id="standard-basic" label="Email" autoComplete="off" autoFocus={true} />

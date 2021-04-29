@@ -1,9 +1,15 @@
+/**
+ * @module
+ */
+
 import React, { useCallback, useState } from "react";
 import { PieChart, Pie, Sector } from "recharts";
 import "./styles.css"
 import KEYS from '../../configs/KEYS';
 
-//Data for Pie Chart
+/*
+  Data for Pie Chart
+*/
 const data = [
     { name: "Completed Orders", value: 2 },
     { name: "PickUp Pending", value: 3 },
@@ -11,7 +17,12 @@ const data = [
     { name: "Delivery Pending", value: 3 }
   ];
   
-//function to render shape of the pie in piechart
+
+/**
+ * function to render shape of the pie in piechart
+ * @param {Object} props - Data about the shape of the pieChart
+ * @returns {g} - React Component g(Scalable Vector Component)
+ */
 const renderActiveShape = (props) => {
     const RADIAN = Math.PI / 180;
     const {
@@ -86,7 +97,10 @@ const renderActiveShape = (props) => {
     );
   };
 
-  //Function to create the whole pie chart
+/**
+ * Function to create the pie chart with different sectors
+ * @returns {div} - React Component div
+ */
 function OrderChart(){
     const [activeIndex, setActiveIndex] = useState(0);
     const onPieEnter = useCallback(
