@@ -11,6 +11,11 @@ import firebase from "firebase";
 import KEYS from '../../configs/KEYS';
 import { Button } from '@material-ui/core';
 
+/**
+ * This View shows Order Details
+ * User can upgrade status of the orders in this View
+ * @returns {div} - React Component div
+ */
 function UpdateOrdersView() {
 
     /*
