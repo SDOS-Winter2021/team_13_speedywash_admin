@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Components/UpdateOrdersView/OrderDetails.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Components/UpdateOrdersView/OrderDetails.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @module
+ */
+import React, { useState, useEffect } from 'react';
+import "./styles.css"
+import { Button } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
+import { makeStyles } from '@material-ui/core/styles';
+import OrderItemTable from './OrderItemTable';
+import firebase from "firebase";
+import KEYS from '../../configs/KEYS';
+
+/**
+ * Responsible for rendering the section to display details about the selected order
+ * @param {Object} props - An object
+ * @returns {div} - React component div
+ */
+function OrdersDetails(props) {
+	//Order details box in order page
+	const useStyles = makeStyles({
+		underline: {
+			"&amp;&amp;&amp;:before": {
+				borderBottom: "none"
+			},
+			"&amp;&amp;:after": {
+				borderBottom: "none"
+			}
+		}
+	});
+	const classes = useStyles();
+
+	/*
+		Function to upgrade the order status of current order
+	*/
+	const handleUpgrade = ()=> {
+		props.setSelectedOrder('');
+	//	props.setSelectedStatus('');
+		const uid = props.selectedOrder.uid;
+		const oid = props.selectedOrder.oid;
+		const old_status = props.selectedOrder.orderStatus;
+		const new_status = {...old_status};
+		//console.log(old_status);
+		if(old_status.message==="Pickup Pending")
+		{
+			new_status.message = "Service Pending";
+			new_status.stage = 2;
+			new_status.stageName = "PICKUPDONE";
+		}
+		else if(old_status.message==="Service Pending")
+		{
+			new_status.message = "Delivery Pending";
+			new_status.stage = 3;
+			new_status.stageName = "SERVICEDONE";
+		}
+		else if(old_status.message==="Delivery Pending")
+		{
+			new_status.message = "Completed";
+			new_status.stage = 4;
+			new_status.stageName = "COMPLETED";
+		}
+		else
+		{
+			return;
+		}
+		//console.log(new_status);
+		const new_order = {...props.selectedOrder, orderStatus : new_status};
+		//console.log(new_order);
+		const new_orders = {...props.orders, 
+			[uid] : {
+				...props.orders[uid],
+				[oid] : new_order
+			}
+		};
+		//console.log(new_orders);
+		firebase.firestore()
+        .collection(KEYS.DATABASE.COLLECTIONS.ORDERS)
+        .doc(uid)
+        .set(new_orders[uid])
+		props.setOrders(new_orders);
+	};
+	
+	// console.log(props.selectedOrder)
+	return (
+		&lt;div class="ordersDetails">
+			&lt;div class="subViewTitle" style={{ marginBottom: "4%" }}>
+				&lt;h3>Order Details&lt;/h3>
+			&lt;/div>
+			&lt;div className='orderData'>
+				&lt;div className='textFieldView'>
+					&lt;TextField className='textField' InputProps={{ classes }} label="Name" value={props.selectedOrder.displayName} />
+					&lt;TextField className='textField' InputProps={{ classes }} label="Mobile Number" value={props.selectedOrder.phoneNumber} />
+					&lt;TextField className='textField' InputProps={{ classes }} label="Address Label" value={props.selectedOrder.addressLabel} />
+				&lt;/div>
+				&lt;div className='textFieldView'>
+					&lt;TextField className='textField' InputProps={{ classes }} label="PickUp Address" value={props.selectedOrder.pickUpAddress} />
+					&lt;TextField className='textField' InputProps={{ classes }} style={{ paddingRight: '10%', width: '50%' }} label="PickUp Time" value={props.selectedOrder.orderTimeString} />
+				&lt;/div>
+				&lt;div className='textFieldView'>
+					&lt;TextField className='textField' InputProps={{ classes }} label="Total Amount" value={props.selectedOrder.totalAmount} />
+					&lt;TextField className='textField' InputProps={{ classes }} label="Current Status" value={props.selectedOrder.orderStatus.message} />
+				&lt;/div>
+			&lt;/div>
+			&lt;OrderItemTable
+				selectedOrder={props.selectedOrder}
+				setSelectedOrder={props.setSelectedOrder} />
+
+			&lt;div class="orderButtonView">
+				&lt;Button onClick={handleUpgrade} style={{ backgroundColor: "#87CEFA", margin: '1%', paddingBottom: '0.5%' }}>Upgrade Status&lt;/Button>
+			&lt;/div>
+		&lt;/div>)
+}
+
+export default OrdersDetails</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-App.html">App</a></li><li><a href="module-Components_CreateNewAdminView_CreateNewAdminView.html">Components/CreateNewAdminView/CreateNewAdminView</a></li><li><a href="module-Components_Header_Header.html">Components/Header/Header</a></li><li><a href="module-Components_Homepage_Homepage.html">Components/Homepage/Homepage</a></li><li><a href="module-Components_HomeView_GraphChart.html">Components/HomeView/GraphChart</a></li><li><a href="module-Components_HomeView_GraphStats.html">Components/HomeView/GraphStats</a></li><li><a href="module-Components_HomeView_HomeView.html">Components/HomeView/HomeView</a></li><li><a href="module-Components_HomeView_OrderChart.html">Components/HomeView/OrderChart</a></li><li><a href="module-Components_HomeView_OrderStats.html">Components/HomeView/OrderStats</a></li><li><a href="module-Components_HomeView_UserInfo.html">Components/HomeView/UserInfo</a></li><li><a href="module-Components_LeftDrawer_LeftDrawer.html">Components/LeftDrawer/LeftDrawer</a></li><li><a href="module-Components_Login_Login.html">Components/Login/Login</a></li><li><a href="module-Components_SignOut_SignOut.html">Components/SignOut/SignOut</a></li><li><a href="module-Components_UpdateAdvertisementView_UpdateAdvertisementView.html">Components/UpdateAdvertisementView/UpdateAdvertisementView</a></li><li><a href="module-Components_UpdateOrdersView_OrderDetails.html">Components/UpdateOrdersView/OrderDetails</a></li><li><a href="module-Components_UpdateOrdersView_OrderElement.html">Components/UpdateOrdersView/OrderElement</a></li><li><a href="module-Components_UpdateOrdersView_OrderItemTable.html">Components/UpdateOrdersView/OrderItemTable</a></li><li><a href="module-Components_UpdateOrdersView_OrdersView.html">Components/UpdateOrdersView/OrdersView</a></li><li><a href="module-Components_UpdateOrdersView_StatusView.html">Components/UpdateOrdersView/StatusView</a></li><li><a href="module-Components_UpdateOrdersView_UpdateOrdersView.html">Components/UpdateOrdersView/UpdateOrdersView</a></li><li><a href="module-Components_UpdateServicesView_CategoryElement.html">Components/UpdateServicesView/CategoryElement</a></li><li><a href="module-Components_UpdateServicesView_CategoryView.html">Components/UpdateServicesView/CategoryView</a></li><li><a href="module-Components_UpdateServicesView_ItemElement.html">Components/UpdateServicesView/ItemElement</a></li><li><a href="module-Components_UpdateServicesView_ItemView.html">Components/UpdateServicesView/ItemView</a></li><li><a href="module-Components_UpdateServicesView_ServiceElement.html">Components/UpdateServicesView/ServiceElement</a></li><li><a href="module-Components_UpdateServicesView_ServiceView.html">Components/UpdateServicesView/ServiceView</a></li><li><a href="module-Components_UpdateServicesView_UpdateServicesView.html">Components/UpdateServicesView/UpdateServicesView</a></li><li><a href="module-Components_UsersView_ListUsers.html">Components/UsersView/ListUsers</a></li><li><a href="module-Components_UsersView_UserDetails.html">Components/UsersView/UserDetails</a></li><li><a href="module-Components_UsersView_UserItem.html">Components/UsersView/UserItem</a></li><li><a href="module-Components_UsersView_UsersView.html">Components/UsersView/UsersView</a></li><li><a href="module-configs_CacheManager.html">configs/CacheManager</a></li><li><a href="module-configs_firebaseInit.html">configs/firebaseInit</a></li><li><a href="module-configs_KEYS.html">configs/KEYS</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Fri Apr 30 2021 09:41:20 GMT+0530 (India Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

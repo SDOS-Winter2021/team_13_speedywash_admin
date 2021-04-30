@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Components/UpdateOrdersView/OrderItemTable.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Components/UpdateOrdersView/OrderItemTable.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @module
+ */
+import React, { useState, useEffect } from 'react';
+import "./styles.css"
+import { makeStyles } from "@material-ui/core/styles";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import Input from "@material-ui/core/Input";
+import Paper from "@material-ui/core/Paper";
+
+/**
+ * Renders the table to show the order items for the selected order
+ * @param {Object} props - An Object of the selected order
+ * @returns {div} - React component div
+ */
+function OrderItemTable(props) {
+	// console.log(props.selectedOrder);
+	/*
+		Create data for row
+	*/
+	const createData = (Service, Category, Item, Count, Price) => ({
+		id: Service.replace(" ", "_") + Category + Item + Count + Price,
+		Service,
+		Category,
+		Item,
+		Count,
+		Price,
+		isEditMode: false
+	});
+	
+	/**
+	 * Function to destructure object for rows
+	 * @param {Object} data - Object of selected order
+	 * @returns {List} - List to be displayed as rows in table
+	 */
+	function parseUserData(data) {
+		var toPass = [];
+		const services = Object.keys(data);
+		for (var i = 0; i &lt; services.length; i++) {
+			const categories = Object.keys(data[services[i]]);
+			for (var j = 0; j &lt; categories.length; j++) {
+				const items = Object.keys(data[services[i]][categories[j]]);
+				for (var k = 0; k &lt; items.length; k++) {
+					const curr = data[services[i]][categories[j]][items[k]];
+					toPass.push(createData(services[i], categories[j], items[k], curr.countitem, curr.price));
+				}
+			}
+		}
+		return toPass;
+	}
+
+	//use state for each row in table
+	const [rows, setRows] = useState([]);
+
+	useEffect(() => {
+		setRows(parseUserData(props.selectedOrder.orderItems));
+	}, [props.selectedOrder])
+	
+	const useStyles = makeStyles(theme => ({
+		root: {
+			width: "100%",
+			marginTop: theme.spacing(3),
+			overflowX: "auto"
+		},
+		table: {
+			minWidth: 650
+		},
+		selectTableCell: {
+			width: 60
+		},
+		tableCell: {
+			width: 130,
+			height: 40
+		},
+		input: {
+			width: 130,
+			height: 40
+		}
+	}));
+
+	/**
+	 *	Function to create row in table 
+	 * @param {Object} obj - An object which contains details for each column of the row
+	 * @returns {TableCell} - React TableCell Component
+	 */
+	const CustomTableCell = ({ row, name, onChange }) => {
+		const classes = useStyles();
+		const { isEditMode } = row;
+		return (
+			&lt;TableCell align="left" className={classes.tableCell}>
+				{isEditMode ? (
+					&lt;Input
+						value={row[name]}
+						name={name}
+						onChange={e => onChange(e, row)}
+						className={classes.input}
+					/>
+				) : (
+					row[name]
+				)}
+			&lt;/TableCell>
+		);
+	};
+	const [previous, setPrevious] = React.useState({});
+	const classes = useStyles();
+
+	/*
+		Function to handle edit mode for rows
+	*/
+	const onToggleEditMode = id => {
+		setRows(state => {
+			return rows.map(row => {
+				if (row.id === id) {
+					return { ...row, isEditMode: !row.isEditMode };
+				}
+				return row;
+			});
+		});
+	};
+
+	/*
+		Function to handle change in rows
+	*/
+	const onChange = (e, row) => {
+		if (!previous[row.id]) {
+			setPrevious(state => ({ ...state, [row.id]: row }));
+		}
+		const value = e.target.value;
+		const name = e.target.name;
+		const { id } = row;
+		const newRows = rows.map(row => {
+			if (row.id === id) {
+				return { ...row, [name]: value };
+			}
+			return row;
+		});
+		setRows(newRows);
+	};
+	
+	/*
+		Function to discard changes in rows
+	*/
+	const onRevert = id => {
+		const newRows = rows.map(row => {
+			if (row.id === id) {
+				return previous[id] ? previous[id] : row;
+			}
+			return row;
+		});
+		setRows(newRows);
+		setPrevious(state => {
+			delete state[id];
+			return state;
+		});
+		onToggleEditMode(id);
+	};
+	
+	return (
+
+		&lt;Paper className={classes.root}>
+			&lt;Table className={classes.table} aria-label="caption table">
+				&lt;TableHead>
+					&lt;TableRow>
+						&lt;TableCell align="left" />
+						&lt;TableCell align="left">Service&lt;/TableCell>
+						&lt;TableCell align="left">Category&lt;/TableCell>
+						&lt;TableCell align="left">Item&lt;/TableCell>
+						&lt;TableCell align="left">Count&lt;/TableCell>
+						&lt;TableCell align="left">Price&lt;/TableCell>
+					&lt;/TableRow>
+				&lt;/TableHead>
+				&lt;TableBody>
+					{rows.map(row => (
+						&lt;TableRow key={row.id}>
+							&lt;TableCell className={classes.selectTableCell}>
+							&lt;/TableCell>
+							&lt;CustomTableCell {...{ row, name: "Service", onChange }} />
+							&lt;CustomTableCell {...{ row, name: "Category", onChange }} />
+							&lt;CustomTableCell {...{ row, name: "Item", onChange }} />
+							&lt;CustomTableCell {...{ row, name: "Count", onChange }} />
+							&lt;CustomTableCell {...{ row, name: "Price", onChange }} />
+						&lt;/TableRow>
+					))}
+				&lt;/TableBody>
+			&lt;/Table>
+			&lt;div>
+
+			&lt;/div>
+		&lt;/Paper>
+	);
+
+
+}
+export default OrderItemTable</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-App.html">App</a></li><li><a href="module-Components_CreateNewAdminView_CreateNewAdminView.html">Components/CreateNewAdminView/CreateNewAdminView</a></li><li><a href="module-Components_Header_Header.html">Components/Header/Header</a></li><li><a href="module-Components_Homepage_Homepage.html">Components/Homepage/Homepage</a></li><li><a href="module-Components_HomeView_GraphChart.html">Components/HomeView/GraphChart</a></li><li><a href="module-Components_HomeView_GraphStats.html">Components/HomeView/GraphStats</a></li><li><a href="module-Components_HomeView_HomeView.html">Components/HomeView/HomeView</a></li><li><a href="module-Components_HomeView_OrderChart.html">Components/HomeView/OrderChart</a></li><li><a href="module-Components_HomeView_OrderStats.html">Components/HomeView/OrderStats</a></li><li><a href="module-Components_HomeView_UserInfo.html">Components/HomeView/UserInfo</a></li><li><a href="module-Components_LeftDrawer_LeftDrawer.html">Components/LeftDrawer/LeftDrawer</a></li><li><a href="module-Components_Login_Login.html">Components/Login/Login</a></li><li><a href="module-Components_SignOut_SignOut.html">Components/SignOut/SignOut</a></li><li><a href="module-Components_UpdateAdvertisementView_UpdateAdvertisementView.html">Components/UpdateAdvertisementView/UpdateAdvertisementView</a></li><li><a href="module-Components_UpdateOrdersView_OrderDetails.html">Components/UpdateOrdersView/OrderDetails</a></li><li><a href="module-Components_UpdateOrdersView_OrderElement.html">Components/UpdateOrdersView/OrderElement</a></li><li><a href="module-Components_UpdateOrdersView_OrderItemTable.html">Components/UpdateOrdersView/OrderItemTable</a></li><li><a href="module-Components_UpdateOrdersView_OrdersView.html">Components/UpdateOrdersView/OrdersView</a></li><li><a href="module-Components_UpdateOrdersView_StatusView.html">Components/UpdateOrdersView/StatusView</a></li><li><a href="module-Components_UpdateOrdersView_UpdateOrdersView.html">Components/UpdateOrdersView/UpdateOrdersView</a></li><li><a href="module-Components_UpdateServicesView_CategoryElement.html">Components/UpdateServicesView/CategoryElement</a></li><li><a href="module-Components_UpdateServicesView_CategoryView.html">Components/UpdateServicesView/CategoryView</a></li><li><a href="module-Components_UpdateServicesView_ItemElement.html">Components/UpdateServicesView/ItemElement</a></li><li><a href="module-Components_UpdateServicesView_ItemView.html">Components/UpdateServicesView/ItemView</a></li><li><a href="module-Components_UpdateServicesView_ServiceElement.html">Components/UpdateServicesView/ServiceElement</a></li><li><a href="module-Components_UpdateServicesView_ServiceView.html">Components/UpdateServicesView/ServiceView</a></li><li><a href="module-Components_UpdateServicesView_UpdateServicesView.html">Components/UpdateServicesView/UpdateServicesView</a></li><li><a href="module-Components_UsersView_ListUsers.html">Components/UsersView/ListUsers</a></li><li><a href="module-Components_UsersView_UserDetails.html">Components/UsersView/UserDetails</a></li><li><a href="module-Components_UsersView_UserItem.html">Components/UsersView/UserItem</a></li><li><a href="module-Components_UsersView_UsersView.html">Components/UsersView/UsersView</a></li><li><a href="module-configs_CacheManager.html">configs/CacheManager</a></li><li><a href="module-configs_firebaseInit.html">configs/firebaseInit</a></li><li><a href="module-configs_KEYS.html">configs/KEYS</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Fri Apr 30 2021 09:41:20 GMT+0530 (India Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

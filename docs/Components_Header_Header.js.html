@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Components/Header/Header.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Components/Header/Header.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @module
+ */
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import LeftDrawer from '../LeftDrawer/LeftDrawer';
+import "./styles.css"
+
+import PersonIcon from '@material-ui/icons/Person';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import AddIcon from '@material-ui/icons/Add';
+import HomeIcon from '@material-ui/icons/Home';
+import UpdateIcon from '@material-ui/icons/Update';
+import SubscriptionsIcon from '@material-ui/icons/Subscriptions';
+import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
+import StoreIcon from '@material-ui/icons/Store';
+
+import HomeView from '../HomeView/HomeView';
+import UsersView from '../UsersView/UsersView';
+import UpdateServicesView from '../UpdateServicesView/UpdateServicesView';
+import CreateNewAdminView from '../CreateNewAdminView/CreateNewAdminView';
+import UpdateAdvertisementView from '../UpdateAdvertisementView/UpdateAdvertisementView';
+import UpdateOrdersView from '../UpdateOrdersView/UpdateOrdersView';
+import SignOut from '../SignOut/SignOut';
+
+/*
+    Styles for material ui components
+*/
+const useStyles = makeStyles((theme) => ({
+    appbar: {
+        top: 0
+    },
+    root: {
+        flexGrow: 1,
+    },
+    menuButton: {
+        marginRight: theme.spacing(2),
+    },
+    title: {
+        flexGrow: 1,
+    },
+}));
+
+/**
+ * Contains all the Views that are available and they will be displayed in app left drawer window
+ * 
+ * @param {Object} user - Object of the current user
+ * @param {function} setUser - Function to set current user
+ * @returns {List} - Items to be rendered for the drawer according to user type
+ */
+function CreateDrawerItems(user, setUser) {
+    return user.Roll == "Admin" ? [
+        {
+            text: "Home",
+            icon: &lt;HomeIcon />,
+            component: &lt;HomeView user={user} setUser={setUser} />
+        },
+        {
+            text: "View Users",
+            icon: &lt;PersonIcon />,
+            component: &lt;UsersView user={user} setUser={setUser} />
+        },
+        {
+            text: "Update Services",
+            icon: &lt;UpdateIcon />,
+            component: &lt;UpdateServicesView user={user} setUser={setUser} />
+        },
+        {
+            text: "Create Admin Account",
+            icon: &lt;AddIcon />,
+            component: &lt;CreateNewAdminView user={user} setUser={setUser} />
+        },
+        {
+            text: "Change Advertisement",
+            icon: &lt;AddPhotoAlternateIcon />,
+            component: &lt;UpdateAdvertisementView user={user} setUser={setUser} />
+        },
+        {
+            text: "Update Orders",
+            icon: &lt;StoreIcon />,
+            component: &lt;UpdateOrdersView user={user} setUser={setUser} />
+        },
+        {
+            text: "Sign out",
+            icon: &lt;ExitToAppIcon />,
+            component: &lt;SignOut user={user} setUser={setUser} />
+        }
+    ] : [
+            {
+                text: "Home",
+                icon: &lt;HomeIcon />,
+                component: &lt;HomeView user={user} setUser={setUser} />
+            },
+            {
+                text: "Update Orders",
+                icon: &lt;StoreIcon />,
+                component: &lt;UpdateOrdersView user={user} setUser={setUser} />
+            },
+            {
+                text: "Sign out",
+                icon: &lt;ExitToAppIcon />,
+                component: &lt;SignOut user={user} setUser={setUser} />
+            }
+        ]
+}
+
+/**
+ * Renders the Main Header Component 
+ * @param {Object} obj - An Object
+ * @returns {div} - React Component div
+ */
+function Header({ user, setUser, currentView, setCurrentView }) {
+    const classes = useStyles();
+    
+    /* 
+    Generating and storing list of Drawer Items
+    */
+    const drawerList = CreateDrawerItems(user, setUser);
+
+    
+    return (
+        &lt;div>
+            &lt;AppBar position="static">
+                &lt;Toolbar>
+                    &lt;IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                        &lt;LeftDrawer DrawerItems={drawerList} currentView={currentView} setCurrentView={setCurrentView} />
+                    &lt;/IconButton>
+                    &lt;Typography variant="h6" className={classes.title}>
+                        Speedywash-Admin (IN)
+                    &lt;/Typography>
+                    &lt;Typography>
+                        {`Hi, ${user.Name} (${user.Roll})`}
+                    &lt;/Typography>
+                &lt;/Toolbar>
+            &lt;/AppBar>
+        &lt;/div>
+    )
+}
+
+export default Header
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-App.html">App</a></li><li><a href="module-Components_CreateNewAdminView_CreateNewAdminView.html">Components/CreateNewAdminView/CreateNewAdminView</a></li><li><a href="module-Components_Header_Header.html">Components/Header/Header</a></li><li><a href="module-Components_Homepage_Homepage.html">Components/Homepage/Homepage</a></li><li><a href="module-Components_HomeView_GraphChart.html">Components/HomeView/GraphChart</a></li><li><a href="module-Components_HomeView_GraphStats.html">Components/HomeView/GraphStats</a></li><li><a href="module-Components_HomeView_HomeView.html">Components/HomeView/HomeView</a></li><li><a href="module-Components_HomeView_OrderChart.html">Components/HomeView/OrderChart</a></li><li><a href="module-Components_HomeView_OrderStats.html">Components/HomeView/OrderStats</a></li><li><a href="module-Components_HomeView_UserInfo.html">Components/HomeView/UserInfo</a></li><li><a href="module-Components_LeftDrawer_LeftDrawer.html">Components/LeftDrawer/LeftDrawer</a></li><li><a href="module-Components_Login_Login.html">Components/Login/Login</a></li><li><a href="module-Components_SignOut_SignOut.html">Components/SignOut/SignOut</a></li><li><a href="module-Components_UpdateAdvertisementView_UpdateAdvertisementView.html">Components/UpdateAdvertisementView/UpdateAdvertisementView</a></li><li><a href="module-Components_UpdateOrdersView_OrderDetails.html">Components/UpdateOrdersView/OrderDetails</a></li><li><a href="module-Components_UpdateOrdersView_OrderElement.html">Components/UpdateOrdersView/OrderElement</a></li><li><a href="module-Components_UpdateOrdersView_OrderItemTable.html">Components/UpdateOrdersView/OrderItemTable</a></li><li><a href="module-Components_UpdateOrdersView_OrdersView.html">Components/UpdateOrdersView/OrdersView</a></li><li><a href="module-Components_UpdateOrdersView_StatusView.html">Components/UpdateOrdersView/StatusView</a></li><li><a href="module-Components_UpdateOrdersView_UpdateOrdersView.html">Components/UpdateOrdersView/UpdateOrdersView</a></li><li><a href="module-Components_UpdateServicesView_CategoryElement.html">Components/UpdateServicesView/CategoryElement</a></li><li><a href="module-Components_UpdateServicesView_CategoryView.html">Components/UpdateServicesView/CategoryView</a></li><li><a href="module-Components_UpdateServicesView_ItemElement.html">Components/UpdateServicesView/ItemElement</a></li><li><a href="module-Components_UpdateServicesView_ItemView.html">Components/UpdateServicesView/ItemView</a></li><li><a href="module-Components_UpdateServicesView_ServiceElement.html">Components/UpdateServicesView/ServiceElement</a></li><li><a href="module-Components_UpdateServicesView_ServiceView.html">Components/UpdateServicesView/ServiceView</a></li><li><a href="module-Components_UpdateServicesView_UpdateServicesView.html">Components/UpdateServicesView/UpdateServicesView</a></li><li><a href="module-Components_UsersView_ListUsers.html">Components/UsersView/ListUsers</a></li><li><a href="module-Components_UsersView_UserDetails.html">Components/UsersView/UserDetails</a></li><li><a href="module-Components_UsersView_UserItem.html">Components/UsersView/UserItem</a></li><li><a href="module-Components_UsersView_UsersView.html">Components/UsersView/UsersView</a></li><li><a href="module-configs_CacheManager.html">configs/CacheManager</a></li><li><a href="module-configs_firebaseInit.html">configs/firebaseInit</a></li><li><a href="module-configs_KEYS.html">configs/KEYS</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Fri Apr 30 2021 09:41:20 GMT+0530 (India Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
