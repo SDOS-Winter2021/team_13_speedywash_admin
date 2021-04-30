@@ -1,3 +1,10 @@
+/**
+ * @module
+ */
+/**
+ * Contains mapping of keys to string that are globally available to all parts of application, READ-ONLY
+ * @returns {void} - Nothing
+ */
 const KEYS = {
     DATABASE: {
         COLLECTIONS: {

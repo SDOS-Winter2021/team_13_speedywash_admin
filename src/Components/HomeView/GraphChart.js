@@ -1,3 +1,7 @@
+/**
+ * @module
+ */
+
 import React, { useState, useCallback } from "react";
 import {
   LineChart,
@@ -10,7 +14,9 @@ import {
 } from "recharts";
 import "./styles.css"
 
-//Data for graph
+/*
+  Stores the data for Bar graph
+*/
 const data = [
     {
       name: "Day 1",
@@ -55,14 +61,24 @@ const data = [
       Bussiness: 21000
     }
   ];
+
+/**
+ * This renders the line chart for the homepage.
+ * 
+ * @returns {div} - React Component Div
+ */
 function GraphChart(){
-    //Rechart's components
+    /*
+      Rechart's components
+    */
     const [opacity, setOpacity] = useState({
         "New Orders": 1,
         "New Users": 1
       });
     
-      //Handles opacity of element
+      /*
+        Handles opacity of element
+      */
       const handleMouseEnter = useCallback(
         (o) => {
           const { dataKey } = o;
@@ -72,7 +88,9 @@ function GraphChart(){
         [opacity, setOpacity]
       );
 
-      //Decreases opacity of elements
+      /*
+        Decreases opacity of element
+      */
       const handleMouseLeave = useCallback(
         (o) => {
           const { dataKey } = o;

@@ -1,15 +1,19 @@
+/**
+ * @module
+ */
+
 import React, { useState, useEffect } from 'react';
 import "./styles.css"
-
-
 import TextField from '@material-ui/core/TextField';
-
 import { Button } from '@material-ui/core';
 import Delete from '@material-ui/icons/Delete';
 
-
-/* Renders Individual Item and stores its state - whether it is in edit mode of not */
-
+/**
+ * Renders Individual Item
+ * Stores its state - whether it is in edit mode of not 
+ * @param {Object} props 
+ * @returns {div} - React Component div
+ */
 function ItemElement(props){
     const [edit, setEdit] = useState("");
     const emptyItem={itemName:"", price: "", unit: ""}

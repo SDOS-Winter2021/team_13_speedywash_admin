@@ -1,3 +1,6 @@
+/**
+ * @module
+ */
 import React, { useState, useEffect } from 'react';
 import "./styles.css"
 import { makeStyles } from "@material-ui/core/styles";
@@ -8,14 +11,17 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Input from "@material-ui/core/Input";
 import Paper from "@material-ui/core/Paper";
-import IconButton from "@material-ui/core/IconButton";
-import EditIcon from "@material-ui/icons/EditOutlined";
-import DoneIcon from "@material-ui/icons/DoneAllTwoTone";
-import RevertIcon from "@material-ui/icons/NotInterestedOutlined";
 
+/**
+ * Renders the table to show the order items for the selected order
+ * @param {Object} props - An Object of the selected order
+ * @returns {div} - React component div
+ */
 function OrderItemTable(props) {
 	// console.log(props.selectedOrder);
-	//Create data for row
+	/*
+		Create data for row
+	*/
 	const createData = (Service, Category, Item, Count, Price) => ({
 		id: Service.replace(" ", "_") + Category + Item + Count + Price,
 		Service,
@@ -25,8 +31,12 @@ function OrderItemTable(props) {
 		Price,
 		isEditMode: false
 	});
-
-	//Object destructuring for rows
+	
+	/**
+	 * Function to destructure object for rows
+	 * @param {Object} data - Object of selected order
+	 * @returns {List} - List to be displayed as rows in table
+	 */
 	function parseUserData(data) {
 		var toPass = [];
 		const services = Object.keys(data);
@@ -72,7 +82,11 @@ function OrderItemTable(props) {
 		}
 	}));
 
-	//Create row in table
+	/**
+	 *	Function to create row in table 
+	 * @param {Object} obj - An object which contains details for each column of the row
+	 * @returns 
+	 */
 	const CustomTableCell = ({ row, name, onChange }) => {
 		const classes = useStyles();
 		const { isEditMode } = row;
@@ -94,7 +108,9 @@ function OrderItemTable(props) {
 	const [previous, setPrevious] = React.useState({});
 	const classes = useStyles();
 
-	//Handle edit mode for rows
+	/*
+		Function to handle edit mode for rows
+	*/
 	const onToggleEditMode = id => {
 		setRows(state => {
 			return rows.map(row => {
@@ -106,7 +122,9 @@ function OrderItemTable(props) {
 		});
 	};
 
-	//handle change in rows
+	/*
+		Function to handle change in rows
+	*/
 	const onChange = (e, row) => {
 		if (!previous[row.id]) {
 			setPrevious(state => ({ ...state, [row.id]: row }));
@@ -122,7 +140,10 @@ function OrderItemTable(props) {
 		});
 		setRows(newRows);
 	};
-	//On discarding changes
+	
+	/*
+		Function to discard changes in rows
+	*/
 	const onRevert = id => {
 		const newRows = rows.map(row => {
 			if (row.id === id) {
@@ -137,6 +158,7 @@ function OrderItemTable(props) {
 		});
 		onToggleEditMode(id);
 	};
+	
 	return (
 
 		<Paper className={classes.root}>
@@ -155,29 +177,6 @@ function OrderItemTable(props) {
 					{rows.map(row => (
 						<TableRow key={row.id}>
 							<TableCell className={classes.selectTableCell}>
-								{row.isEditMode ? (
-									<>
-										<IconButton
-											aria-label="done"
-											onClick={() => onToggleEditMode(row.id)}
-										>
-											<DoneIcon />
-										</IconButton>
-										<IconButton
-											aria-label="revert"
-											onClick={() => onRevert(row.id)}
-										>
-											<RevertIcon />
-										</IconButton>
-									</>
-								) : (
-									<IconButton
-										aria-label="delete"
-										onClick={() => onToggleEditMode(row.id)}
-									>
-										<EditIcon />
-									</IconButton>
-								)}
 							</TableCell>
 							<CustomTableCell {...{ row, name: "Service", onChange }} />
 							<CustomTableCell {...{ row, name: "Category", onChange }} />

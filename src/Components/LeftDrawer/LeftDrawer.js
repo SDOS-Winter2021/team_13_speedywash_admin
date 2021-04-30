@@ -1,3 +1,6 @@
+/**
+ * @module
+ */
 import React, { useState } from 'react'
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
@@ -10,7 +13,9 @@ import ListItemText from '@material-ui/core/ListItemText';
 import MenuIcon from '@material-ui/icons/Menu';
 import KEYS from "../../configs/KEYS"
 
-// Styles for material ui components
+/*
+    Styles for material ui components
+*/
 const useStyles = makeStyles({
     list: {
         width: 300,
@@ -24,25 +29,32 @@ const useStyles = makeStyles({
 });
 
 
-/*
-    Displays a menu icon clicking upon which opens 
-    up an app drawer which has many views ro select from
-    Upon clicking one of the view from the app drawer
-    setCurrentView updates the currentview to the 
-    Item which was selected and that view is rendered 
-    dynamically (it's an hook)
-*/
+
+/**
+ * Displays a menu icon clicking upon which opens up an app drawer which has many views to select from
+ * Upon clicking one of the view from the app drawer setCurrentView updates the currentview to the Item
+ * View is then rendered dynamically (it's an hook)
+ * @param {Object} obj - An Object which contains, DrawerItems, CurrentView and function to set CurrentView
+ * @returns 
+ */
 function LeftDrawer({ DrawerItems, currentView, setCurrentView }) {
     const classes = useStyles();
 
-    // Stores drawer/menu state, true means open, false means close, by default menu/drawer is close
+    
+    /*
+        Stores drawer/menu state, true means open, false means close, by default menu/drawer is close
+    */
     const [drawerState, setDrawerState] = useState(false);
 
+    
     function toggleDrawer(state) {
         setDrawerState(state);
     };
 
-    // Renders DrawerItems which is a list got from parent component
+    
+    /*
+        Renders DrawerItems which is a list got from parent component
+    */
     const list = (anchor) => (
         <div
             className={clsx(classes.list, {
@@ -66,7 +78,7 @@ function LeftDrawer({ DrawerItems, currentView, setCurrentView }) {
             </List>
         </div>
     );
-
+    
     return (
         <div>
             <MenuIcon onClick={() => toggleDrawer(true)} />

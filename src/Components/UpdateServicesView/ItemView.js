@@ -1,11 +1,18 @@
+/**
+ * @module
+ */
 import React, { useState, useEffect } from 'react';
 import "./styles.css"
 import TextField from '@material-ui/core/TextField';
 import { Button } from '@material-ui/core';
 import ItemElement from './ItemElement'
 
-/* Renders general layout for Individual Items */
 
+/**
+ * Renders general layout for Individual Items
+ * @param {Object} props 
+ * @returns {div} - React Component div
+ */
 function ItemView(props){
     const emptyItem={itemName:"", price: "", unit: ""}
     const [newItem, setNewItem] = useState({

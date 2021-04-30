@@ -1,14 +1,24 @@
+/**
+ * @module
+ */
 import React, { useState, useEffect } from 'react'
 import ListUsers from './ListUsers'
 import UserDetails from './UserDetails'
 import firebase from "firebase";
 import KEYS from '../../configs/KEYS';
 
+/**
+ * Renders the user's info page
+ * @returns {div} - React Component div
+ */
 function UsersView() {
 
     const [users, setUsers] = useState('');
     const [selectedUser, setSelectedUser] = useState('');
     
+    /*
+        Fetching user data from the firebase
+    */
     useEffect(()=>
     {
         firebase.firestore().collection(KEYS.DATABASE.COLLECTIONS.USERS).onSnapshot((records) => {
@@ -20,7 +30,6 @@ function UsersView() {
             setUsers(userList);
         });
     },[])    
-    //console.log(users);
 
     return (
         <div>

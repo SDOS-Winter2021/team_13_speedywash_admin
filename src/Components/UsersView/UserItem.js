@@ -1,7 +1,15 @@
+/**
+ * @module
+ */
 import React, { useState, useEffect } from 'react';
 import "./styles.css"
 import { Button } from '@material-ui/core';
 
+/**
+ * Render each user element in view user pane
+ * @param {Object} props - Object that contains details of the 
+ * @returns {div} - React Component div
+ */
 function UserItem(props){
     const name = props.currUser.displayName;
     return (

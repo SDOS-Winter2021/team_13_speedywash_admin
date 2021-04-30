@@ -1,17 +1,28 @@
+/**
+ * @module
+ */
 import React, { useState, useEffect } from 'react';
 import "./styles.css"
 import KEYS from '../../configs/KEYS';
 import TextField from '@material-ui/core/TextField';
 
+/**
+ * Risponsible for rendering basic statistics
+ * @returns {div} - React Component div
+ */
 function UserInfo(){
-    //Stats for user info
+    /*
+        Stats for user info
+    */
     const stats = [
         {name: "Total Users", value: 12},
         {name: "Bussiness" , value: 23948},
         {name: "Users joined this week", value: 11}
     ]
 
-    //render Stats
+    /*
+        Renders each item of the stat
+    */
     const _renderItem = (item) => {
         return (<div style = {{display:'flex', flexDirection:'row'}}>
             <TextField className = 'textField' value = {item.name}></TextField>

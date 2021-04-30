@@ -1,9 +1,17 @@
+/**
+ * @module
+ */
 import React, { useState, useEffect } from 'react';
 import "./styles.css"
 import { Button } from '@material-ui/core';
 import firebase from "firebase";
 import KEYS from '../../configs/KEYS';
 
+/**
+ * Renders the update Advertisement screen
+ * Admin can add and remove advertisements
+ * @returns {div} - React Component div
+ */
 function UpdateAdvertisementView() {
     const [newImage, setnewImage] = useState({});
     const [advertisements, setAdvertisements] = useState({
@@ -12,7 +20,9 @@ function UpdateAdvertisementView() {
     
     ]);
 
-    // fetch existing advertisements and store them in a state variable
+    /*
+        fetch existing advertisements and store them in a state variable
+    */
     useEffect(()=>
     {
         firebase.firestore()
@@ -25,14 +35,19 @@ function UpdateAdvertisementView() {
         });
     },[])
 
-    // store the selected image in local storage
+    
+    /*
+        store the selected image in local storage
+    */
     const handleChange = e => {
         if(e.target.files[0]) {
             setnewImage(e.target.files[0]);
         }
     };
 
-    // upload the image to firebase
+    /*
+        upload the image to firebase
+    */
     const handleUploadClick = () => {
         //console.log(newImage);
         const key = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
@@ -61,7 +76,9 @@ function UpdateAdvertisementView() {
         );
     };
 
-// In case admin doesn't want to save changes to database, it will be fetched again from firebase
+    /*
+        In case admin doesn't want to save changes to database, it will be fetched again from firebase
+    */
     function discardChanges(){
         setdeletedAdvertisements([]);
         setAdvertisements({});
@@ -74,7 +91,10 @@ function UpdateAdvertisementView() {
             }
         });
     }
-    // in case admin confirm changes, it will be modified in the firebase as well
+
+    /*
+        In case admin confirm changes, it will be modified in the firebase as well
+    */
     function confirmChanges(){
         firebase.firestore()
         .collection(KEYS.DATABASE.COLLECTIONS.ADVERTISEMENT)
@@ -93,6 +113,9 @@ function UpdateAdvertisementView() {
         //console.log("firestore updated");
     }
 
+    /*
+        Function to delete advertisement
+    */
     function handleDelete(item){
         //console.log(item);
         const extra = [...deletedAdvertisements, item];

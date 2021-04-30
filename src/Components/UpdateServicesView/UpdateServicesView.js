@@ -1,3 +1,6 @@
+/**
+ * @module
+ */
 import React, { useState, useEffect } from 'react';
 import "./styles.css"
 import ServiceView from "./ServiceView"
@@ -9,19 +12,36 @@ import { Button } from '@material-ui/core';
 import KEYS from '../../configs/KEYS';
 
 
-
-/* This View shows Services Details to Admin
-*/
-
+/**
+ * This View shows Services Details to Admin
+ * @returns {div} - React Component div
+ */
 function UpdateServicesView() {
     /* some states to keep track of what is to be shown */
+    /*
+        Stores object of all services
+    */
     const [services, setServices] = useState({
     });
+    
+    /*
+        Stores object of selected service
+    */
     const [selectedService, setselectedService] = useState("");
+    
+    /*
+        Stores object of selected category
+    */
     const [selectedCategory, setselectedCategory] = useState("");
+
+    /*
+        Stores object of selected item
+    */
     const [selectedItem, setselectedItem] = useState("");
     
-    // fetch data from firebase whenever required
+    /*
+        fetch data from firebase whenever required
+    */
     useEffect(()=>
     {
         firebase.firestore()
@@ -34,7 +54,13 @@ function UpdateServicesView() {
             }
         });
     },[])
-    // In case admin doesn't want to save changes to database, it will be fetched again from firebase
+    
+    
+    /*
+        Function to discard changes
+        In case admin doesn't want to save changes to database, 
+        it will be fetched again from firebase
+    */
     function discardChanges(){
         setselectedItem("");
         setselectedCategory("");
@@ -49,7 +75,14 @@ function UpdateServicesView() {
             }
         });
     }
-    // in case admin confirm changes, it will be modified in the firebase as well
+    
+    /*
+        Function to discard changes
+        In case admin confirm changes, 
+        it will be modified in the firebase as well
+    
+    */
+    
     function confirmChanges(){
         firebase.firestore()
         .collection(KEYS.DATABASE.COLLECTIONS.TEST)

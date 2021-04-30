@@ -1,3 +1,6 @@
+/**
+ * @module
+ */
 import React, { useState, useEffect } from 'react';
 import "./styles.css"
 import { Button } from '@material-ui/core';
@@ -10,6 +13,11 @@ import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
 import UserItem from './UserItem'
 
+/**
+ * Renders pane to display users for selection
+ * @param {Object} props - Contains objects of users
+ * @returns {div} - React component div
+ */
 function ListUsers(props){
 
     const useStyles = makeStyles((theme) => ({
