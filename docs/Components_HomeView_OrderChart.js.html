@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Components/HomeView/OrderChart.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Components/HomeView/OrderChart.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @module
+ */
+
+import React, { useCallback, useState } from "react";
+import { PieChart, Pie, Sector } from "recharts";
+import "./styles.css"
+import KEYS from '../../configs/KEYS';
+
+/*
+  Data for Pie Chart
+*/
+const data = [
+    { name: "Completed Orders", value: 2 },
+    { name: "PickUp Pending", value: 3 },
+    { name: "Service Pending", value: 4 },
+    { name: "Delivery Pending", value: 3 }
+  ];
+  
+
+/**
+ * function to render shape of the pie in piechart
+ * @param {Object} props - Data about the shape of the pieChart
+ * @returns {g} - React Component g(Scalable Vector Component)
+ */
+const renderActiveShape = (props) => {
+    const RADIAN = Math.PI / 180;
+    const {
+      cx,
+      cy,
+      midAngle,
+      innerRadius,
+      outerRadius,
+      startAngle,
+      endAngle,
+      fill,
+      payload,
+      percent,
+      value
+    } = props;
+    const sin = Math.sin(-RADIAN * midAngle);
+    const cos = Math.cos(-RADIAN * midAngle);
+    const sx = cx + (outerRadius + 10) * cos;
+    const sy = cy + (outerRadius + 10) * sin;
+    const mx = cx + (outerRadius + 30) * cos;
+    const my = cy + (outerRadius + 30) * sin;
+    const ex = mx + (cos >= 0 ? 1 : -1) * 22;
+    const ey = my;
+    const textAnchor = cos >= 0 ? "start" : "end";
+  
+
+    return (
+      &lt;g>
+        &lt;text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill}>
+          {payload.name}
+        &lt;/text>
+        &lt;Sector
+          cx={cx}
+          cy={cy}
+          innerRadius={innerRadius}
+          outerRadius={outerRadius}
+          startAngle={startAngle}
+          endAngle={endAngle}
+          fill={fill}
+        />
+        &lt;Sector
+          cx={cx}
+          cy={cy}
+          startAngle={startAngle}
+          endAngle={endAngle}
+          innerRadius={outerRadius + 6}
+          outerRadius={outerRadius + 10}
+          fill={fill}
+        />
+        &lt;path
+          d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`}
+          stroke={fill}
+          fill="none"
+        />
+        &lt;circle cx={ex} cy={ey} r={2} fill={fill} stroke="none" />
+        &lt;text
+          x={ex + (cos >= 0 ? 1 : -1) * 12}
+          y={ey}
+          textAnchor={textAnchor}
+          fill="#333"
+        >{`Value ${value}`}&lt;/text>
+        &lt;text
+          x={ex + (cos >= 0 ? 1 : -1) * 12}
+          y={ey}
+          dy={18}
+          textAnchor={textAnchor}
+          fill="#999"
+        >
+          {`(${(percent * 100).toFixed(2)}%)`}
+        &lt;/text>
+      &lt;/g>
+    );
+  };
+
+/**
+ * Function to create the pie chart with different sectors
+ * @returns {div} - React Component div
+ */
+function OrderChart(){
+    const [activeIndex, setActiveIndex] = useState(0);
+    const onPieEnter = useCallback(
+      (_, index) => {
+        setActiveIndex(index);
+      },
+      [setActiveIndex]
+    );
+  
+    return (
+      &lt;div>
+        &lt;PieChart className = 'piechart'
+        width={600} height={400} >
+          &lt;Pie
+            activeIndex={activeIndex}
+            activeShape={renderActiveShape}
+            data={data}
+            cx={300}
+            cy={200}
+            innerRadius={80}
+            outerRadius={120}
+            fill= {KEYS.COLORS.MAIN}
+            dataKey="value"
+            onMouseEnter={onPieEnter}
+          />
+        &lt;/PieChart>
+      &lt;/div>
+    );
+}
+export default OrderChart
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-App.html">App</a></li><li><a href="module-Components_CreateNewAdminView_CreateNewAdminView.html">Components/CreateNewAdminView/CreateNewAdminView</a></li><li><a href="module-Components_Header_Header.html">Components/Header/Header</a></li><li><a href="module-Components_Homepage_Homepage.html">Components/Homepage/Homepage</a></li><li><a href="module-Components_HomeView_GraphChart.html">Components/HomeView/GraphChart</a></li><li><a href="module-Components_HomeView_GraphStats.html">Components/HomeView/GraphStats</a></li><li><a href="module-Components_HomeView_HomeView.html">Components/HomeView/HomeView</a></li><li><a href="module-Components_HomeView_OrderChart.html">Components/HomeView/OrderChart</a></li><li><a href="module-Components_HomeView_OrderStats.html">Components/HomeView/OrderStats</a></li><li><a href="module-Components_HomeView_UserInfo.html">Components/HomeView/UserInfo</a></li><li><a href="module-Components_LeftDrawer_LeftDrawer.html">Components/LeftDrawer/LeftDrawer</a></li><li><a href="module-Components_Login_Login.html">Components/Login/Login</a></li><li><a href="module-Components_SignOut_SignOut.html">Components/SignOut/SignOut</a></li><li><a href="module-Components_UpdateAdvertisementView_UpdateAdvertisementView.html">Components/UpdateAdvertisementView/UpdateAdvertisementView</a></li><li><a href="module-Components_UpdateOrdersView_OrderDetails.html">Components/UpdateOrdersView/OrderDetails</a></li><li><a href="module-Components_UpdateOrdersView_OrderElement.html">Components/UpdateOrdersView/OrderElement</a></li><li><a href="module-Components_UpdateOrdersView_OrderItemTable.html">Components/UpdateOrdersView/OrderItemTable</a></li><li><a href="module-Components_UpdateOrdersView_OrdersView.html">Components/UpdateOrdersView/OrdersView</a></li><li><a href="module-Components_UpdateOrdersView_StatusView.html">Components/UpdateOrdersView/StatusView</a></li><li><a href="module-Components_UpdateOrdersView_UpdateOrdersView.html">Components/UpdateOrdersView/UpdateOrdersView</a></li><li><a href="module-Components_UpdateServicesView_CategoryElement.html">Components/UpdateServicesView/CategoryElement</a></li><li><a href="module-Components_UpdateServicesView_CategoryView.html">Components/UpdateServicesView/CategoryView</a></li><li><a href="module-Components_UpdateServicesView_ItemElement.html">Components/UpdateServicesView/ItemElement</a></li><li><a href="module-Components_UpdateServicesView_ItemView.html">Components/UpdateServicesView/ItemView</a></li><li><a href="module-Components_UpdateServicesView_ServiceElement.html">Components/UpdateServicesView/ServiceElement</a></li><li><a href="module-Components_UpdateServicesView_ServiceView.html">Components/UpdateServicesView/ServiceView</a></li><li><a href="module-Components_UpdateServicesView_UpdateServicesView.html">Components/UpdateServicesView/UpdateServicesView</a></li><li><a href="module-Components_UsersView_ListUsers.html">Components/UsersView/ListUsers</a></li><li><a href="module-Components_UsersView_UserDetails.html">Components/UsersView/UserDetails</a></li><li><a href="module-Components_UsersView_UserItem.html">Components/UsersView/UserItem</a></li><li><a href="module-Components_UsersView_UsersView.html">Components/UsersView/UsersView</a></li><li><a href="module-configs_CacheManager.html">configs/CacheManager</a></li><li><a href="module-configs_firebaseInit.html">configs/firebaseInit</a></li><li><a href="module-configs_KEYS.html">configs/KEYS</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Fri Apr 30 2021 09:41:20 GMT+0530 (India Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

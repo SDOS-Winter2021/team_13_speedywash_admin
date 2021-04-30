@@ -85,7 +85,7 @@ function OrderItemTable(props) {
 	/**
 	 *	Function to create row in table 
 	 * @param {Object} obj - An object which contains details for each column of the row
-	 * @returns 
+	 * @returns {TableCell} - React TableCell Component
 	 */
 	const CustomTableCell = ({ row, name, onChange }) => {
 		const classes = useStyles();

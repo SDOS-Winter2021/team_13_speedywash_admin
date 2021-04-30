@@ -35,7 +35,7 @@ const useStyles = makeStyles({
  * Upon clicking one of the view from the app drawer setCurrentView updates the currentview to the Item
  * View is then rendered dynamically (it's an hook)
  * @param {Object} obj - An Object which contains, DrawerItems, CurrentView and function to set CurrentView
- * @returns 
+ * @returns {div} - An HTML Component
  */
 function LeftDrawer({ DrawerItems, currentView, setCurrentView }) {
     const classes = useStyles();
